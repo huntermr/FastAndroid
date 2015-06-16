@@ -34,7 +34,7 @@ public class NetUtils {
             ConnectivityManager mConnectivityManager = (ConnectivityManager) context
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
             if (mConnectivityManager == null) {
-                Toast.makeText(context, R.string.network_not_available, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "无网络", Toast.LENGTH_SHORT).show();
                 return false;
             }
             NetworkInfo[] infos = mConnectivityManager.getAllNetworkInfo();
@@ -47,7 +47,7 @@ public class NetUtils {
             }
         }
 
-        Toast.makeText(context, R.string.network_not_available, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "无网络", Toast.LENGTH_SHORT).show();
         return false;
     }
 

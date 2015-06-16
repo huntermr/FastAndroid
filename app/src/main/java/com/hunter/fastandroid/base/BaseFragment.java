@@ -1,5 +1,4 @@
-ï»¿package com.hunter.fastandroid.base;
-
+package com.hunter.fastandroid.base;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,17 +14,17 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     private View layoutView;
 
     /**
-     * åˆå§‹åŒ–å¸ƒå±€
+     * ³õÊ¼»¯²¼¾Ö
      */
     public abstract int getLayoutRes();
 
     /**
-     * åˆå§‹åŒ–è§†å›¾
+     * ³õÊ¼»¯ÊÓÍ¼
      */
     public abstract void initView();
 
     /**
-     * åˆå§‹åŒ–æ ‡é¢˜æ 
+     * ³õÊ¼»¯±êÌâÀ¸
      */
     public abstract void initTitleBar();
 
@@ -46,7 +45,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     }
 
     /**
-     * è·å–Fragmentå¸ƒå±€æ–‡ä»¶çš„View
+     * »ñÈ¡Fragment²¼¾ÖÎÄ¼şµÄView
      *
      * @param inflater
      * @param container
@@ -57,16 +56,16 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     }
 
     /**
-     * è·å–å½“å‰FragmentçŠ¶æ€
+     * »ñÈ¡µ±Ç°Fragment×´Ì¬
      *
-     * @return trueä¸ºæ­£å¸¸ falseä¸ºæœªåŠ è½½æˆ–æ­£åœ¨åˆ é™¤
+     * @return trueÎªÕı³£ falseÎªÎ´¼ÓÔØ»òÕıÔÚÉ¾³ı
      */
     private boolean getStatus() {
         return (isAdded() && !isRemoving());
     }
 
     /**
-     * è·å–Activity
+     * »ñÈ¡Activity
      *
      * @return
      */
@@ -78,7 +77,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     }
 
     /**
-     * åˆå§‹åŒ–æ ‡é¢˜æ 
+     * ³õÊ¼»¯±êÌâÀ¸
      */
     public HeaderLayout getTitleBar() {
         return getBaseActivity().getTitleBar();

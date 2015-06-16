@@ -26,7 +26,6 @@ import android.view.inputmethod.InputMethodManager;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
-import com.qiniu.android.utils.UrlSafeBase64;
 import com.hunter.fastandroid.R;
 import com.hunter.fastandroid.app.MyApplication;
 import com.hunter.fastandroid.bean.response.Login;
@@ -307,21 +306,6 @@ public class CommonUtils {
             return true;
         } else {
             return false;
-        }
-    }
-
-    /**
-     * 根据当前系统语言获取价格
-     *
-     * @param price
-     * @return
-     */
-    public static String getPriceByRate(float price) {
-        float rate = MyApplication.getRate();
-        if (isZh()) {
-            return MyApplication.getInstance().getString(R.string.price_str, rate * price);
-        }else{
-            return MyApplication.getInstance().getString(R.string.price_str, price);
         }
     }
 

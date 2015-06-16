@@ -1,7 +1,6 @@
-ï»¿package com.hunter.fastandroid.bean.response;
-
+package com.hunter.fastandroid.bean.response;
 /**
- * ç”¨æˆ·å®ä½“ç±»(å“åº”)
+ * ÓÃ»§ÊµÌåÀà(ÏìÓ¦)
  */
 public class User {
     private String id;

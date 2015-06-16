@@ -10,7 +10,6 @@ import com.hunter.fastandroid.model.interfaces.IUserModel;
 import com.hunter.fastandroid.presenters.interfaces.user.IRegisterPresenter;
 import com.hunter.fastandroid.ui.views.user.IRegisterView;
 import com.hunter.fastandroid.utils.CommonUtils;
-import com.hunter.fastandroid.utils.ErrorCodeUtils;
 
 /**
  * 演示Presenter实现类
@@ -56,11 +55,10 @@ public class RegisterPresenterImpl extends BasePresenter<IRegisterView> implemen
 
             @Override
             public void onFailure(int errorCode) {
-                super.onFailure(errorCode);
-
-                int res = ErrorCodeUtils.getRes(errorCode);
-                mView.showToast(res);
                 mView.hideProgress();
+                mView.showToast("访问网络失败");
+
+                super.onFailure(errorCode);
             }
         });
     }
