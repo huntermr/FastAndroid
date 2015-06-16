@@ -12,9 +12,9 @@
 网络访问：android-async-http、数据库：GreenDao、图片加载：Universal-image-loader、View注解：Butterknife、Json解析：Gson
 
 项目说明：
-1.在项目中自定义了Header视图,可自定义左右按钮,点击事件以及标题
-2.项目中有演示MVP的源码,请自行翻阅
-3.封装了BaseAdapter,提供了更加完善的方法,具体请查看CustomBaseAdapter源码
+> 1.在项目中自定义了Header视图,可自定义左右按钮,点击事件以及标题
+> 2.项目中有演示MVP的源码,请自行翻阅
+> 3.封装了BaseAdapter,提供了更加完善的方法,具体请查看CustomBaseAdapter源码
 4.以单例模式封装了网络访问层,整个项目的访问接口共用一个,并且初始化时设置了一些访问配置,方便开发者自行修改。请查看NetCenter源码
 5.抽象出公共请求参数及响应参数,所有的请求实体类都继承自BaseRequest,方便设置公共请求参数
 6.所有响应实体类都可通过Response解析获得,Response继承自BaseResponse,请自行查阅源码
