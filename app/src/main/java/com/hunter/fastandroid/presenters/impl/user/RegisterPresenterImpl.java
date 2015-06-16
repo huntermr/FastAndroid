@@ -2,15 +2,11 @@ package com.hunter.fastandroid.presenters.impl.user;
 
 import android.text.TextUtils;
 
-import com.hunter.fastandroid.app.MyApplication;
 import com.hunter.fastandroid.base.BasePresenter;
-import com.hunter.fastandroid.base.IBaseView;
 import com.hunter.fastandroid.bean.request.RegisterUser;
-import com.hunter.fastandroid.bean.response.Login;
 import com.hunter.fastandroid.listener.TransactionListener;
 import com.hunter.fastandroid.model.impl.UserModelImpl;
 import com.hunter.fastandroid.model.interfaces.IUserModel;
-import com.hunter.fastandroid.net.NetCenter;
 import com.hunter.fastandroid.presenters.interfaces.user.IRegisterPresenter;
 import com.hunter.fastandroid.ui.views.user.IRegisterView;
 import com.hunter.fastandroid.utils.CommonUtils;

@@ -14,15 +14,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     private BaseActivity mActivity;
     private View layoutView;
 
-    @Override
-    public boolean canGoBack() {
-        return false;
-    }
-
-    @Override
-    public void goBack() {
-    }
-
     /**
      * 初始化布局
      */

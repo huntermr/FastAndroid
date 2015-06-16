@@ -1,6 +1,5 @@
 ﻿package com.hunter.fastandroid.bean.response;
 
-
 /**
  * 用户实体类(响应)
  */
