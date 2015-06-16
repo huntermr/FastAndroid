@@ -27,7 +27,7 @@
 关于项目维护:由于作者平时工作较忙,更新进度比较慢,所以希望能有一些志同道合的朋友共同来维护此项目,真诚期待有意者能联系本人。
 
 
-联系作者：Hunter
+联系作者：Hunter 
 Email:hunter-android@163.com
 QQ 381959281
 Blog:http://blog.csdn.net/ht_android
