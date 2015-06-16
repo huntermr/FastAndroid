@@ -1,4 +1,4 @@
-package com.hunter.fastandroid.base;
+﻿package com.hunter.fastandroid.base;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hunter.fastandroid.ui.custom.HeaderLayout;
-import com.hunter.fastandroid.ui.fragment.BackHandle;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseFragment extends Fragment implements IBaseView, BackHandle {
+public abstract class BaseFragment extends Fragment implements IBaseView {
     private BaseActivity mActivity;
     private View layoutView;
 

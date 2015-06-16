@@ -1,6 +1,5 @@
-package com.hunter.fastandroid.bean.response;
+﻿package com.hunter.fastandroid.bean.response;
 
-import com.hunter.fastandroid.utils.QiniuUtils;
 
 /**
  * 用户实体类(响应)
@@ -59,10 +58,6 @@ public class User {
 
     public String getProfile_cover() {
         return profile_cover;
-    }
-
-    public String getQiniuProfile_cover() {
-        return QiniuUtils.getDownloadUrl(profile_cover);
     }
 
     public void setId(String id) {
@@ -172,15 +167,6 @@ public class User {
 
     public String getAvatar() {
         return avatar;
-    }
-
-    /**
-     * 获取七牛下载地址
-     *
-     * @return
-     */
-    public String getQiniuAvatar() {
-        return QiniuUtils.getDownloadUrl(avatar);
     }
 
     public int getFollowers_count() {
