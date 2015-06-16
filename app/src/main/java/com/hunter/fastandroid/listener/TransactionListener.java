@@ -1,13 +1,5 @@
 package com.hunter.fastandroid.listener;
 
-import android.app.Activity;
-import android.content.Intent;
-
-import com.hunter.fastandroid.app.AppManager;
-import com.hunter.fastandroid.app.MyApplication;
-import com.hunter.fastandroid.net.ResponseCode;
-import com.hunter.fastandroid.ui.activity.personal.CompleteUserInfoActivity;
-
 /**
  * 事务处理监听
  */
