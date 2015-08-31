@@ -9,10 +9,9 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import com.hunter.fastandroid.utils.CommonUtils;
 
 public class Response extends BaseResponse {
-
-    private String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
     /**
      * 解析json,获取响应对象
@@ -69,27 +68,13 @@ public class Response extends BaseResponse {
         return mResponse;
     }
 
-    /**
-     * 设置Gson解析Date的解析格式
-     *
-     * @param format
-     */
-    public void setGsonDateFormat(String dateFormat) {
-        this.dateFormat = dateFormat;
-    }
-
-    private Gson getGson() {
-        return new GsonBuilder().setDateFormat(dateFormat).create();
-    }
-
     public <T> T getBean(Class<T> clazz) throws IllegalArgumentException,
             JsonSyntaxException {
         if (TextUtils.isEmpty(getData()))
             throw new IllegalArgumentException(
                     "In the Response, data can't be empty");
 
-        Gson gson = getGson();
-        T object = gson.fromJson(getData(), clazz);
+        T object = CommonUtils.getGson().fromJson(getData(), clazz);
 
         return object;
     }
@@ -100,8 +85,7 @@ public class Response extends BaseResponse {
             throw new IllegalArgumentException(
                     "In the Response, data can't be empty");
 
-        Gson gson = getGson();
-        T object = gson.fromJson(getData(), typeOfT);
+        T object = CommonUtils.getGson().fromJson(getData(), typeOfT);
 
         return object;
     }

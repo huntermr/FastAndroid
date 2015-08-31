@@ -1,5 +1,23 @@
 package com.hunter.fastandroid.utils;
 
+import android.app.Service;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.Cursor;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Vibrator;
+import android.provider.ContactsContract;
+import android.provider.MediaStore;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+import com.hunter.fastandroid.R;
+import com.hunter.fastandroid.app.BaseApplication;
+
 import java.security.MessageDigest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,61 +27,18 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
-import com.hunter.fastandroid.R;
-import com.hunter.fastandroid.app.MyApplication;
-import com.hunter.fastandroid.bean.response.Login;
-
 /**
  * 通用工具类
  *
  * @author Ht
  */
 public class CommonUtils {
+    private static Gson gson;
+    private static final String gsonFormat = "yyyy-MM-dd HH:mm:ss";
+    public static SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    public static SimpleDateFormat formatDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
-    public static final Gson GSON = new Gson();
-
-    public static SimpleDateFormat formatDate = new SimpleDateFormat(
-            "yyyy-MM-dd");
-    public static SimpleDateFormat formatDateTime = new SimpleDateFormat(
-            "yyyy-MM-dd HH:mm:ss");
-
-    /**
-     * 隐藏软键盘
-     *
-     * @param activity
-     */
-    public static void hideSoftKeybord(Activity activity) {
-
-        if (null == activity) {
-            return;
-        }
-        try {
-            final View v = activity.getWindow().peekDecorView();
-            if (v != null && v.getWindowToken() != null) {
-                InputMethodManager imm = (InputMethodManager) activity
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
-        } catch (Exception e) {
-
-        }
+    private CommonUtils() {
     }
 
     /**
@@ -77,37 +52,8 @@ public class CommonUtils {
             new JsonParser().parse(jsonContent);
             return true;
         } catch (JsonParseException e) {
-            LogUtils.i("bad json: " + jsonContent);
             return false;
         }
-    }
-
-    /**
-     * 抖动动画
-     *
-     * @param context
-     * @param view
-     */
-    public static void startShakeAnim(Context context, View view) {
-        Animation shake = AnimationUtils.loadAnimation(context, R.anim.shake);
-        view.startAnimation(shake);
-    }
-
-    /**
-     * 获取应用版本号
-     *
-     * @param context
-     * @return
-     */
-    public static String softVersion(Context context) {
-        PackageInfo info = null;
-        try {
-            info = context.getPackageManager().getPackageInfo(
-                    context.getPackageName(), 0);
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return info.versionName;
     }
 
     /**
@@ -121,16 +67,39 @@ public class CommonUtils {
     }
 
     /**
-     * 解析日期
+     * 格式化日期
+     *
+     * @param date
+     * @return 年月日 时分秒
+     */
+    public static String formatDateTime(Date date) {
+        return formatDateTime.format(date);
+    }
+
+    /**
+     * 将时间戳解析成日期
      *
      * @param timeInMillis
-     * @return
+     * @return 年月日
      */
     public static String parseDate(long timeInMillis) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timeInMillis);
         Date date = calendar.getTime();
         return formatDate(date);
+    }
+
+    /**
+     * 将时间戳解析成日期
+     *
+     * @param timeInMillis
+     * @return 年月日 时分秒
+     */
+    public static String parseDateTime(long timeInMillis) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timeInMillis);
+        Date date = calendar.getTime();
+        return formatDateTime(date);
     }
 
     /**
@@ -148,29 +117,6 @@ public class CommonUtils {
         }
 
         return mDate;
-    }
-
-    /**
-     * 格式化日期
-     *
-     * @param date
-     * @return 年月日 时分秒
-     */
-    public static String formatDateTime(Date date) {
-        return formatDateTime.format(date);
-    }
-
-    /**
-     * 解析日期
-     *
-     * @param timeInMillis
-     * @return
-     */
-    public static String parseDateTime(long timeInMillis) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(timeInMillis);
-        Date date = calendar.getTime();
-        return formatDateTime(date);
     }
 
     /**
@@ -196,7 +142,7 @@ public class CommonUtils {
      * @param s
      * @return 加密后的数据
      */
-    public final static String getMD5(String s) {
+    public static String EncryptMD5(String s) {
         char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                 'a', 'b', 'c', 'd', 'e', 'f'};
         try {
@@ -237,32 +183,18 @@ public class CommonUtils {
     }
 
     /**
-     * 获取登陆状态
+     * 根据系统语言判断是否为中国
      *
      * @return
      */
-    public static boolean isLogin() {
-        Login currentUser = MyApplication.getCurrentUser();
-        if (currentUser == null || TextUtils.isEmpty(currentUser.getToken())) {
+    public static boolean isZh() {
+        Locale locale = BaseApplication.getInstance().getResources().getConfiguration().locale;
+        String language = locale.getLanguage();
+        if (language.startsWith("zh")) {
+            return true;
+        } else {
             return false;
         }
-
-        return true;
-    }
-
-    /**
-     * 时间格式生成字符串
-     *
-     * @param suffix 文件后缀名
-     * @return
-     */
-    public static String getFileNameByDate(String suffix) {
-//        Format dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-//        Calendar rightNow = Calendar.getInstance();
-//        String datetime = dateFormat.format(rightNow.getTime());
-        Calendar calendar = Calendar.getInstance();
-        long timeInMillis = calendar.getTimeInMillis();
-        return timeInMillis + suffix;
     }
 
     /**
@@ -296,17 +228,112 @@ public class CommonUtils {
     }
 
     /**
-     * 根据系统语言判断是否为中国
+     * 获取gson对象
+     *
      * @return
      */
-    public static boolean isZh() {
-        Locale locale = MyApplication.getInstance().getResources().getConfiguration().locale;
-        String language = locale.getLanguage();
-        if (language.startsWith("zh")) {
-            return true;
-        } else {
-            return false;
+    public static Gson getGson() {
+        if (gson == null) {
+            gson = new GsonBuilder().setDateFormat(gsonFormat).create(); // 创建gson对象，并设置日期格式
         }
+
+        return gson;
+    }
+
+    /**
+     * 调用震动器
+     *
+     * @param context      调用该方法的Context
+     * @param milliseconds 震动的时长，单位是毫秒
+     */
+    public static void vibrate(final Context context, long milliseconds) {
+        Vibrator vib = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
+        vib.vibrate(milliseconds);
+    }
+
+    /**
+     * 调用震动器
+     *
+     * @param context  调用该方法的Context
+     * @param pattern  自定义震动模式 。数组中数字的含义依次是[静止时长，震动时长，静止时长，震动时长。。。]时长的单位是毫秒
+     * @param isRepeat 是否反复震动，如果是true，反复震动，如果是false，只震动一次
+     */
+    public static void vibrate(final Context context, long[] pattern, boolean isRepeat) {
+        Vibrator vib = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
+        vib.vibrate(pattern, isRepeat ? 1 : -1);
+    }
+
+    /**
+     * 播放音乐
+     *
+     * @param context
+     */
+    public static void playMusic(Context context) {
+        MediaPlayer mp = MediaPlayer.create(context, R.raw.beep);
+        mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.start();
+            }
+        });
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.release();
+            }
+        });
+    }
+
+    /**
+     * 获取联系人电话
+     * @param cursor
+     * @return
+     */
+    private String getContactPhone(Context context, Cursor cursor)
+    {
+
+        int phoneColumn = cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER);
+        int phoneNum = cursor.getInt(phoneColumn);
+        String phoneResult="";
+        //System.out.print(phoneNum);
+        if (phoneNum > 0)
+        {
+            // 获得联系人的ID号
+            int idColumn = cursor.getColumnIndex(ContactsContract.Contacts._ID);
+            String contactId = cursor.getString(idColumn);
+            // 获得联系人的电话号码的cursor;
+            Cursor phones = context.getContentResolver().query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID+ " = " + contactId,
+                    null, null);
+            //int phoneCount = phones.getCount();
+            //allPhoneNum = new ArrayList<String>(phoneCount);
+            if (phones.moveToFirst())
+            {
+                // 遍历所有的电话号码
+                for (;!phones.isAfterLast();phones.moveToNext())
+                {
+                    int index = phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                    int typeindex = phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE);
+                    int phone_type = phones.getInt(typeindex);
+                    String phoneNumber = phones.getString(index);
+                    switch(phone_type)
+                    {
+                        case 2:
+                            phoneResult=phoneNumber;
+                            break;
+                    }
+                    //allPhoneNum.add(phoneNumber);
+                }
+                if (!phones.isClosed())
+                {
+                    phones.close();
+                }
+            }
+        }
+        return phoneResult;
     }
 
 }

@@ -12,8 +12,7 @@ import android.widget.Toast;
 import com.hunter.fastandroid.R;
 import com.hunter.fastandroid.app.AppManager;
 import com.hunter.fastandroid.net.NetCenter;
-import com.hunter.fastandroid.ui.custom.HeaderLayout;
-import com.hunter.fastandroid.utils.LogUtils;
+import com.hunter.fastandroid.ui.custom.TitleBar;
 
 import butterknife.ButterKnife;
 
@@ -25,11 +24,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
      * 初始化布局
      */
     public abstract void initContentView();
-
-    /**
-     * 初始化标题栏
-     */
-    public abstract void initTitleBar();
 
     /**
      * 初始化控件
@@ -58,9 +52,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         // 初始化View注入
         ButterKnife.inject(this);
         initPresenter();
-        if (getTitleBar() != null) {
-            initTitleBar();
-        }
         initView();
         initListener();
     }
@@ -171,17 +162,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         }
     }
 
-    /**
-     * 初始化标题栏
-     */
-    public HeaderLayout getTitleBar() {
-        HeaderLayout mHeaderLayout = (HeaderLayout) findViewById(R.id.titleBar);
-        if (mHeaderLayout == null) {
-            LogUtils.i("标题栏控件不存在");
-        }
-        return mHeaderLayout;
-    }
-
     @Override
     public void showProgress(boolean flag, String message) {
         if (pd == null) {
@@ -254,16 +234,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         if (!isFinishing()) {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    public void showNetError() {
-        showToast("网络异常,请稍后重试");
-    }
-
-    @Override
-    public void showParseError() {
-        showToast("数据解析异常");
     }
 
     @Override

@@ -54,16 +54,6 @@ public interface IBaseView {
     void showToast(String msg);
 
     /**
-     * 通用网络异常提示
-     */
-    void showNetError();
-
-    /**
-     * 通用解析异常提示
-     */
-    void showParseError();
-
-    /**
      * 结束当前页面
      */
     void close();

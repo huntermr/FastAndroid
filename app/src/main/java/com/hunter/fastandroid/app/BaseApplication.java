@@ -4,9 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.util.DisplayMetrics;
 
-import com.hunter.fastandroid.bean.response.Login;
-import com.hunter.fastandroid.bean.response.User;
+import com.hunter.fastandroid.DaoMaster;
+import com.hunter.fastandroid.DaoSession;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -15,8 +16,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
-import com.hunter.fastandroid.DaoMaster;
-import com.hunter.fastandroid.DaoSession;
 
 import java.io.File;
 import java.util.Locale;
@@ -26,11 +25,23 @@ import java.util.Locale;
  *
  * @author Ht
  */
-public class MyApplication extends Application {
+public class BaseApplication extends Application {
     private static DaoMaster daoMaster;
     private static DaoSession daoSession;
-    private static MyApplication mInstance;
-    private static Login mCurrentUser;
+    private static BaseApplication mInstance;
+
+    /**
+     * 屏幕宽度
+     */
+    public static int screenWidth;
+    /**
+     * 屏幕高度
+     */
+    public static int screenHeight;
+    /**
+     * 屏幕密度
+     */
+    public static float screenDensity;
 
     @Override
     public void onCreate() {
@@ -38,6 +49,7 @@ public class MyApplication extends Application {
         mInstance = this;
 
         initImageLoader();
+        initScreenSize();
     }
 
     /**
@@ -82,7 +94,7 @@ public class MyApplication extends Application {
     public static DaoMaster getDaoMaster(Context context) {
         if (daoMaster == null) {
             DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context,
-                    Constants.DB_NAME, null);
+                    G.APPNAME, null);
             daoMaster = new DaoMaster(helper.getWritableDatabase());
         }
         return daoMaster;
@@ -137,34 +149,13 @@ public class MyApplication extends Application {
     }
 
     /**
-     * 设置当前登陆账号
-     *
-     * @param login
+     * 初始化当前设备屏幕宽高
      */
-    public static void setCurrentUser(Login login) {
-        mCurrentUser = login;
-    }
-
-    /**
-     * 获取当前登陆账号
-     *
-     * @return
-     */
-    public static Login getCurrentUser() {
-        return mCurrentUser;
-    }
-
-    /**
-     * 获取当前用户信息
-     *
-     * @return
-     */
-    public static User getCurrentUserInfo() {
-        if (mCurrentUser != null) {
-            return mCurrentUser.getUser();
-        }
-
-        return null;
+    private void initScreenSize() {
+        DisplayMetrics curMetrics = getApplicationContext().getResources().getDisplayMetrics();
+        screenWidth = curMetrics.widthPixels;
+        screenHeight = curMetrics.heightPixels;
+        screenDensity = curMetrics.density;
     }
 
 }

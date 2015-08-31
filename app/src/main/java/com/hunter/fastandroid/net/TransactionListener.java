@@ -1,22 +1,15 @@
-package com.hunter.fastandroid.listener;
+package com.hunter.fastandroid.net;
 
 /**
  * 事务处理监听
  */
 public abstract class TransactionListener<T> {
     /**
-     * 无参数成功回调
-     */
-    public void onSuccess() {
-
-    }
-
-    /**
-     * 带参数的成功回调
+     * 带数据的成功回调
      *
-     * @param t
+     * @param data
      */
-    public void onSuccess(T t) {
+    public void onSuccess(String data) {
 
     }
 

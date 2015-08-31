@@ -1,11 +1,10 @@
 package com.hunter.fastandroid.base;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.hunter.fastandroid.ui.custom.HeaderLayout;
 
 import butterknife.ButterKnife;
 
@@ -14,17 +13,17 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     private View layoutView;
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     public abstract int getLayoutRes();
 
     /**
-     * ³õÊ¼»¯ÊÓÍ¼
+     * åˆå§‹åŒ–è§†å›¾
      */
     public abstract void initView();
 
     /**
-     * ³õÊ¼»¯±êÌâÀ¸
+     * åˆå§‹åŒ–æ ‡é¢˜æ 
      */
     public abstract void initTitleBar();
 
@@ -37,15 +36,12 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         layoutView = getCreateView(inflater, container);
         ButterKnife.inject(this, layoutView);
-        if (getTitleBar() != null) {
-            initTitleBar();
-        }
         initView();
         return layoutView;
     }
 
     /**
-     * »ñÈ¡Fragment²¼¾ÖÎÄ¼şµÄView
+     * è·å–Fragmentå¸ƒå±€æ–‡ä»¶çš„View
      *
      * @param inflater
      * @param container
@@ -56,16 +52,16 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     }
 
     /**
-     * »ñÈ¡µ±Ç°Fragment×´Ì¬
+     * è·å–å½“å‰FragmentçŠ¶æ€
      *
-     * @return trueÎªÕı³£ falseÎªÎ´¼ÓÔØ»òÕıÔÚÉ¾³ı
+     * @return trueä¸ºæ­£å¸¸ falseä¸ºæœªåŠ è½½æˆ–æ­£åœ¨åˆ é™¤
      */
     private boolean getStatus() {
         return (isAdded() && !isRemoving());
     }
 
     /**
-     * »ñÈ¡Activity
+     * è·å–Activity
      *
      * @return
      */
@@ -74,13 +70,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
             mActivity = (BaseActivity) getActivity();
         }
         return mActivity;
-    }
-
-    /**
-     * ³õÊ¼»¯±êÌâÀ¸
-     */
-    public HeaderLayout getTitleBar() {
-        return getBaseActivity().getTitleBar();
     }
 
     @Override
@@ -134,26 +123,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
             BaseActivity activity = getBaseActivity();
             if (activity != null) {
                 activity.showToast(msg);
-            }
-        }
-    }
-
-    @Override
-    public void showNetError() {
-        if (getStatus()) {
-            BaseActivity activity = getBaseActivity();
-            if (activity != null) {
-                activity.showNetError();
-            }
-        }
-    }
-
-    @Override
-    public void showParseError() {
-        if (getStatus()) {
-            BaseActivity activity = getBaseActivity();
-            if (activity != null) {
-                activity.showParseError();
             }
         }
     }

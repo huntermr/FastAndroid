@@ -5,7 +5,7 @@ import android.content.Context;
 import com.hunter.fastandroid.DaoSession;
 import com.hunter.fastandroid.User;
 import com.hunter.fastandroid.UserDao;
-import com.hunter.fastandroid.app.MyApplication;
+import com.hunter.fastandroid.app.BaseApplication;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class CustomUserDao {
     public static CustomUserDao getInstance(Context context) {
         if (mInstance == null) {
             mInstance = new CustomUserDao();
-            mInstance.mDaoSession = MyApplication.getDaoSession(context);
+            mInstance.mDaoSession = BaseApplication.getDaoSession(context);
             mInstance.mUserDao = mInstance.mDaoSession.getUserDao();
         }
 

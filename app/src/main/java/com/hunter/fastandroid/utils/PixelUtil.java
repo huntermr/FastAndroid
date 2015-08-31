@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.view.WindowManager;
 
-import com.hunter.fastandroid.app.MyApplication;
+import com.hunter.fastandroid.app.BaseApplication;
 
 /**
  * 像素转换工具
@@ -16,7 +16,7 @@ public class PixelUtil {
     /**
      * The context.
      */
-    private static Context mContext = MyApplication.getInstance();
+    private static Context mContext = BaseApplication.getInstance();
 
     /**
      * 获取屏幕宽度

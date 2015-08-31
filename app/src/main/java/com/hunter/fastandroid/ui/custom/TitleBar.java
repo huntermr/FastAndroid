@@ -14,22 +14,22 @@ import com.hunter.fastandroid.R;
  * 自定义头部布局
  *
  * @author Ht
- * @ClassName: HeaderLayout
+ * @ClassName: TitleBar
  * @Description: Activity或者Fragment的头部标题栏
  */
-public class HeaderLayout extends LinearLayout {
+public class TitleBar extends LinearLayout {
     private LayoutInflater mInflater;
     private View mHeader;
     private LinearLayout mLayoutLeftContainer, mLayoutRightContainer, mLayoutCenterContainer, mHeaderTitle;
     private TextView mTvTitle;
     private ImageButton mLeftImageButton, mRightImageButton;
 
-    public HeaderLayout(Context context) {
+    public TitleBar(Context context) {
         super(context);
         init(context);
     }
 
-    public HeaderLayout(Context context, AttributeSet attrs) {
+    public TitleBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
@@ -53,8 +53,8 @@ public class HeaderLayout extends LinearLayout {
 
         mLayoutCenterContainer = (LinearLayout) findViewByHeaderId(R.id.header_layout_middleview_container);
 
-        initLeftImageButton();
-        initRightImageButton();
+        initLeftView();
+        initRightView();
 
         mLayoutLeftContainer.setVisibility(View.INVISIBLE);
         mLayoutRightContainer.setVisibility(View.INVISIBLE);
@@ -66,16 +66,9 @@ public class HeaderLayout extends LinearLayout {
     }
 
     /**
-     * 在TitleBar中查找指定控件
-     */
-    public View findViewByHeaderId(int id) {
-        return mHeader.findViewById(id);
-    }
-
-    /**
      * 初始化左侧按钮
      */
-    private void initLeftImageButton() {
+    private void initLeftView() {
         View mleftImageButtonView = mInflater.inflate(
                 R.layout.common_header_leftbutton, null);
         mLayoutLeftContainer.addView(mleftImageButtonView);
@@ -86,12 +79,19 @@ public class HeaderLayout extends LinearLayout {
     /**
      * 初始化右侧按钮
      */
-    private void initRightImageButton() {
+    private void initRightView() {
         View mRightImageButtonView = mInflater.inflate(
                 R.layout.common_header_rightbutton, null);
         mLayoutRightContainer.addView(mRightImageButtonView);
         mRightImageButton = (ImageButton) mRightImageButtonView
                 .findViewById(R.id.ib_titlebar_right);
+    }
+
+    /**
+     * 在TitleBar中查找指定控件
+     */
+    public View findViewByHeaderId(int id) {
+        return mHeader.findViewById(id);
     }
 
     /**
@@ -101,52 +101,17 @@ public class HeaderLayout extends LinearLayout {
         mTvTitle.setText(title);
         mHeaderTitle.setVisibility(View.VISIBLE);
         mLayoutCenterContainer.setVisibility(View.GONE);
-        mLayoutLeftContainer.removeAllViews();
-        mLayoutRightContainer.removeAllViews();
     }
 
     /**
      * 设置TitleBar的标题
+     *
      * @param res
      */
-    public void setTitle(int res){
+    public void setTitle(int res) {
         mTvTitle.setText(res);
         mHeaderTitle.setVisibility(View.VISIBLE);
         mLayoutCenterContainer.setVisibility(View.GONE);
-        mLayoutLeftContainer.removeAllViews();
-        mLayoutRightContainer.removeAllViews();
-    }
-
-    /**
-     * 设置TitleBar的标题及左侧按钮背景
-     */
-    public void setTitle(CharSequence title, int leftRes) {
-        setTitle(title);
-        mLeftImageButton.setBackgroundResource(leftRes);
-        mLayoutLeftContainer.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * 设置TitleBar的标题及右侧按钮背景
-     */
-    public void setTitle(CharSequence title, int leftRes, int rightRes) {
-        setTitle(title, leftRes);
-        mRightImageButton.setBackgroundResource(rightRes);
-        mLayoutRightContainer.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * 设置左侧按钮点击事件
-     */
-    public void setLeftListener(OnClickListener listener) {
-        mLeftImageButton.setOnClickListener(listener);
-    }
-
-    /**
-     * 设置右侧按钮点击事件
-     */
-    public void setRightListener(OnClickListener listener) {
-        mRightImageButton.setOnClickListener(listener);
     }
 
     /**
@@ -175,5 +140,31 @@ public class HeaderLayout extends LinearLayout {
         mLayoutRightContainer.removeAllViews();
         mLayoutRightContainer.addView(view);
         mLayoutRightContainer.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 设置文字标题以及左右的View
+     *
+     * @param title
+     * @param leftView
+     * @param rightView
+     */
+    public void setTitleBar(CharSequence title, View leftView, View rightView) {
+        setTitle(title);
+        setLeftView(leftView);
+        setRightView(rightView);
+    }
+
+    /**
+     * 设置文字标题以及左右的View
+     *
+     * @param title
+     * @param leftView
+     * @param rightView
+     */
+    public void setTitleBar(int title, View leftView, View rightView) {
+        setTitle(title);
+        setLeftView(leftView);
+        setRightView(rightView);
     }
 }

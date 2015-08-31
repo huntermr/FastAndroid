@@ -2,7 +2,6 @@ package com.hunter.fastandroid.net;
 
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.hunter.fastandroid.base.Response;
-import com.hunter.fastandroid.listener.TransactionListener;
 
 import org.apache.http.Header;
 
@@ -11,6 +10,7 @@ public class TransactionHttpResponseHandler extends TextHttpResponseHandler {
 
     /**
      * 自定义http响应处理器
+     *
      * @param listener
      */
     public TransactionHttpResponseHandler(TransactionListener listener) {
@@ -27,7 +27,7 @@ public class TransactionHttpResponseHandler extends TextHttpResponseHandler {
     public void onSuccess(int statusCode, Header[] headers, String responseString) {
         Response response = Response.getResponse(responseString);
         if (response.getCode() == ResponseCode.SUCCESS) {
-            listener.onSuccess();
+            listener.onSuccess(response.getData());
         } else {
             listener.onFailure(response.getCode());
         }

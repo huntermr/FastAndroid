@@ -34,7 +34,6 @@ public class NetUtils {
             ConnectivityManager mConnectivityManager = (ConnectivityManager) context
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
             if (mConnectivityManager == null) {
-                Toast.makeText(context, "无网络", Toast.LENGTH_SHORT).show();
                 return false;
             }
             NetworkInfo[] infos = mConnectivityManager.getAllNetworkInfo();
@@ -47,39 +46,7 @@ public class NetUtils {
             }
         }
 
-        Toast.makeText(context, "无网络", Toast.LENGTH_SHORT).show();
         return false;
-    }
-
-    private static void showNetErrorDialog(Context context) {
-        try {
-            BaseActivity activity = (BaseActivity) AppManager.getAppManager()
-                    .currentActivity();
-            activity.hideProgress();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("提示");
-        builder.setMessage("当前网络不可用,请检查网络设置。");
-        builder.setNegativeButton("去设置", new AlertDialog.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-
-            }
-        });
-
-        builder.setPositiveButton("取消", new AlertDialog.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-
-            }
-        });
-        builder.show();
-
     }
 
     /**
