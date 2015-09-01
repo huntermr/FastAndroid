@@ -26,8 +26,8 @@ import java.util.Locale;
  * @author Ht
  */
 public class BaseApplication extends Application {
-    private static DaoMaster daoMaster;
-    private static DaoSession daoSession;
+    private static DaoMaster mDaoMaster;
+    private static DaoSession mDaoSession;
     private static BaseApplication mInstance;
 
     /**
@@ -92,12 +92,12 @@ public class BaseApplication extends Application {
      * @return
      */
     public static DaoMaster getDaoMaster(Context context) {
-        if (daoMaster == null) {
+        if (mDaoMaster == null) {
             DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context,
                     G.APPNAME, null);
-            daoMaster = new DaoMaster(helper.getWritableDatabase());
+            mDaoMaster = new DaoMaster(helper.getWritableDatabase());
         }
-        return daoMaster;
+        return mDaoMaster;
     }
 
     /**
@@ -107,13 +107,13 @@ public class BaseApplication extends Application {
      * @return
      */
     public static DaoSession getDaoSession(Context context) {
-        if (daoSession == null) {
-            if (daoMaster == null) {
-                daoMaster = getDaoMaster(context);
+        if (mDaoSession == null) {
+            if (mDaoMaster == null) {
+                mDaoMaster = getDaoMaster(context);
             }
-            daoSession = daoMaster.newSession();
+            mDaoSession = mDaoMaster.newSession();
         }
-        return daoSession;
+        return mDaoSession;
     }
 
     public static Context getInstance() {
