@@ -26,7 +26,8 @@ public abstract class BaseCameraActivity extends BaseActivity {
     public static final int ACTION_ALBUM = 1;
     public static final int ACTION_ZOOM = 2;
 
-    private int width, height;
+    private int width;
+    private int height;
     private String picName;
     private String savePath = SdCardUtil.getNormalSDCardPath();
 

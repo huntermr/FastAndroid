@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment implements IBaseView {
     private BaseActivity mActivity;
-    private View layoutView;
+    private View mLayoutView;
 
     /**
      * 初始化布局
@@ -34,10 +34,10 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        layoutView = getCreateView(inflater, container);
-        ButterKnife.inject(this, layoutView);
+        mLayoutView = getCreateView(inflater, container);
+        ButterKnife.inject(this, mLayoutView);
         initView();
-        return layoutView;
+        return mLayoutView;
     }
 
     /**

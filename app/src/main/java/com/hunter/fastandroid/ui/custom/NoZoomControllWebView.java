@@ -9,7 +9,7 @@ import android.widget.ZoomButtonsController;
 
 public class NoZoomControllWebView extends WebView {
 
-    private ZoomButtonsController zoom_controll = null;
+    private ZoomButtonsController mZoomButtonsController = null;
 
     public NoZoomControllWebView(Context context) {
         super(context);
@@ -38,9 +38,9 @@ public class NoZoomControllWebView extends WebView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         super.onTouchEvent(ev);
-        if (zoom_controll != null) {
+        if (mZoomButtonsController != null) {
             // Hide the controlls AFTER they where made visible by the default implementation.
-            zoom_controll.setVisible(false);
+            mZoomButtonsController.setVisible(false);
         }
         return true;
     }

@@ -16,7 +16,7 @@ import android.widget.BaseAdapter;
  */
 public abstract class CustomBaseAdapter<T> extends BaseAdapter {
 	private LayoutInflater mInflater;
-	private List<T> datas;
+	private List<T> mDatas;
 	private Context mContext;
 
 	public CustomBaseAdapter(Context context) {
@@ -50,7 +50,7 @@ public abstract class CustomBaseAdapter<T> extends BaseAdapter {
 	 * @return
 	 */
 	public T getItemData(int position) {
-		return datas == null ? null : datas.get(position);
+		return mDatas == null ? null : mDatas.get(position);
 	}
 
 	/**
@@ -59,7 +59,7 @@ public abstract class CustomBaseAdapter<T> extends BaseAdapter {
 	 * @return
 	 */
 	public List<T> getData() {
-		return datas;
+		return mDatas;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public abstract class CustomBaseAdapter<T> extends BaseAdapter {
 	 * @param datas
 	 */
 	public void setData(List<T> datas) {
-		this.datas = datas;
+		this.mDatas = datas;
 	}
 
 	/**
@@ -76,17 +76,17 @@ public abstract class CustomBaseAdapter<T> extends BaseAdapter {
 	 * @param position
 	 */
 	public void removeData(int position){
-		this.datas.remove(position);
+		this.mDatas.remove(position);
 	}
 
 	@Override
 	public int getCount() {
-		return datas == null ? 0 : datas.size();
+		return mDatas == null ? 0 : mDatas.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return datas == null ? null : datas.get(position);
+		return mDatas == null ? null : mDatas.get(position);
 	}
 
 	@Override

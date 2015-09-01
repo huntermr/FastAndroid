@@ -20,9 +20,13 @@ import com.hunter.fastandroid.R;
 public class TitleBar extends LinearLayout {
     private LayoutInflater mInflater;
     private View mHeader;
-    private LinearLayout mLayoutLeftContainer, mLayoutRightContainer, mLayoutCenterContainer, mHeaderTitle;
+    private LinearLayout mLayoutLeftContainer;
+    private LinearLayout mLayoutRightContainer;
+    private LinearLayout mLayoutCenterContainer;
+    private LinearLayout mHeaderTitle;
     private TextView mTvTitle;
-    private ImageButton mLeftImageButton, mRightImageButton;
+    private ImageButton mLeftImageButton;
+    private ImageButton mRightImageButton;
 
     public TitleBar(Context context) {
         super(context);

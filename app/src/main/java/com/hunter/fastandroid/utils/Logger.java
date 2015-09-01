@@ -18,7 +18,7 @@ public class Logger {
     /**
      * 是否为开发者模式(开发模式打印LOG,非开发模式不打印LOG)
      */
-    private static boolean debug = true;
+    private static boolean mDebug = true;
 
     private Logger() {
     }
@@ -29,7 +29,7 @@ public class Logger {
      * @param msg
      */
     public static void i(String msg) {
-        if (debug) {
+        if (mDebug) {
             Activity activity = AppManager.getAppManager().currentActivity();
             Log.i("   ---   " + activity.getClass().getSimpleName() + "   ---   ", msg);
         }
@@ -41,7 +41,7 @@ public class Logger {
      * @param msg
      */
     public static void e(String msg) {
-        if (debug) {
+        if (mDebug) {
             Activity activity = AppManager.getAppManager().currentActivity();
             Log.e("   !!!   " + activity.getClass().getSimpleName() + "   !!!   ", msg);
         }

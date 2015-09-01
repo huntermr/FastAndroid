@@ -6,8 +6,6 @@ import org.json.JSONObject;
 
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.hunter.fastandroid.utils.CommonUtils;
 
@@ -74,7 +72,7 @@ public class Response extends BaseResponse {
             throw new IllegalArgumentException(
                     "In the Response, data can't be empty");
 
-        T object = CommonUtils.getGson().fromJson(getData(), clazz);
+        T object = CommonUtils.getmGson().fromJson(getData(), clazz);
 
         return object;
     }
@@ -85,7 +83,7 @@ public class Response extends BaseResponse {
             throw new IllegalArgumentException(
                     "In the Response, data can't be empty");
 
-        T object = CommonUtils.getGson().fromJson(getData(), typeOfT);
+        T object = CommonUtils.getmGson().fromJson(getData(), typeOfT);
 
         return object;
     }
