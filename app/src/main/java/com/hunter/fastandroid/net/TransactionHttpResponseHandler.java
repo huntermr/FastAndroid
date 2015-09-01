@@ -6,30 +6,30 @@ import com.hunter.fastandroid.base.Response;
 import org.apache.http.Header;
 
 public class TransactionHttpResponseHandler extends TextHttpResponseHandler {
-    private TransactionListener listener;
+    private TransactionListener mTransactionListener;
 
     /**
      * 自定义http响应处理器
      *
-     * @param listener
+     * @param mTransactionListener
      */
-    public TransactionHttpResponseHandler(TransactionListener listener) {
-        this.listener = listener;
+    public TransactionHttpResponseHandler(TransactionListener mTransactionListener) {
+        this.mTransactionListener = mTransactionListener;
         setCharset(NetCenter.CONTENT_ENCODING);
     }
 
     @Override
     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-        listener.onFailure(ResponseCode.ERROR_NETWORK);
+        mTransactionListener.onFailure(ResponseCode.ERROR_NETWORK);
     }
 
     @Override
     public void onSuccess(int statusCode, Header[] headers, String responseString) {
         Response response = Response.getResponse(responseString);
         if (response.getCode() == ResponseCode.SUCCESS) {
-            listener.onSuccess(response.getData());
+            mTransactionListener.onSuccess(response.getData());
         } else {
-            listener.onFailure(response.getCode());
+            mTransactionListener.onFailure(response.getCode());
         }
     }
 }

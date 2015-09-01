@@ -28,13 +28,13 @@ public class JSInterface {
     private BaseActivity mContext;
     private BaseFragment mFragment;
 
-    public JSInterface(BaseFragment fragment) {
-        this.mFragment = fragment;
-        this.mContext = fragment.getBaseActivity();
+    public JSInterface(BaseFragment mFragment) {
+        this.mFragment = mFragment;
+        this.mContext = mFragment.getBaseActivity();
     }
 
-    public JSInterface(BaseActivity context) {
-        this.mContext = context;
+    public JSInterface(BaseActivity mContext) {
+        this.mContext = mContext;
     }
 
     /**

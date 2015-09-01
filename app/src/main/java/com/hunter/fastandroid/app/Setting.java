@@ -13,7 +13,7 @@ import android.content.SharedPreferences.Editor;
 public class Setting {
 
     private SharedPreferences mSharedPreferences;
-    private Editor editor;
+    private Editor mEditor;
 
     public Setting(Context context, String name) {
         mSharedPreferences = context.getSharedPreferences(name,
@@ -74,66 +74,66 @@ public class Setting {
      * 以k-v形式保存一个String数据
      */
     public void saveString(String key, String value) {
-        if (editor == null)
-            editor = mSharedPreferences.edit();
+        if (mEditor == null)
+            mEditor = mSharedPreferences.edit();
 
-        editor.putString(key, value);
-        editor.commit();
+        mEditor.putString(key, value);
+        mEditor.commit();
     }
 
     /**
      * 以k-v保存一个int类型的数据
      */
     public void saveInt(String key, int value) {
-        if (editor == null)
-            editor = mSharedPreferences.edit();
+        if (mEditor == null)
+            mEditor = mSharedPreferences.edit();
 
-        editor.putInt(key, value);
-        editor.commit();
+        mEditor.putInt(key, value);
+        mEditor.commit();
     }
 
     /**
      * 以k-v保存一个long类型的数据
      */
     public void saveLong(String key, long value) {
-        if (editor == null)
-            editor = mSharedPreferences.edit();
+        if (mEditor == null)
+            mEditor = mSharedPreferences.edit();
 
-        editor.putLong(key, value);
-        editor.commit();
+        mEditor.putLong(key, value);
+        mEditor.commit();
     }
 
     /**
      * 以k-v保存一个boolean类型的数据
      */
     public void saveBoolean(String key, boolean value) {
-        if (editor == null)
-            editor = mSharedPreferences.edit();
+        if (mEditor == null)
+            mEditor = mSharedPreferences.edit();
 
-        editor.putBoolean(key, value);
-        editor.commit();
+        mEditor.putBoolean(key, value);
+        mEditor.commit();
     }
 
     /**
      * 以k-v保存一个float类型的数据
      */
     public void saveFloat(String key, float value) {
-        if (editor == null)
-            editor = mSharedPreferences.edit();
+        if (mEditor == null)
+            mEditor = mSharedPreferences.edit();
 
-        editor.putFloat(key, value);
-        editor.commit();
+        mEditor.putFloat(key, value);
+        mEditor.commit();
     }
 
     /**
      * 清空数据
      */
     public void clear() {
-        if (editor == null)
-            editor = mSharedPreferences.edit();
+        if (mEditor == null)
+            mEditor = mSharedPreferences.edit();
 
-        editor.clear();
-        editor.commit();
+        mEditor.clear();
+        mEditor.commit();
     }
 
 }

@@ -17,9 +17,9 @@ import android.util.Log;
  *
  */
 public class MyStringUtils {
-	private final static Pattern emailer = Pattern
+	private final static Pattern EMAILER = Pattern
 			.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
-	private final static ThreadLocal<SimpleDateFormat> dateFormater = new ThreadLocal<SimpleDateFormat>() {
+	private final static ThreadLocal<SimpleDateFormat> DATE_FORMATER = new ThreadLocal<SimpleDateFormat>() {
 		@Override
 		protected SimpleDateFormat initialValue() {
 			return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -245,7 +245,7 @@ public class MyStringUtils {
 	/**
 	 * 获取url的后缀名
 	 * 
-	 * @param str
+	 * @param urlString
 	 * @return
 	 */
 	public static String getUrlFileName(String urlString) {
@@ -363,7 +363,7 @@ public class MyStringUtils {
 	 */
 	public static Date toDate(String sdate) {
 		try {
-			return dateFormater.get().parse(sdate);
+			return DATE_FORMATER.get().parse(sdate);
 		} catch (ParseException e) {
 			return null;
 		}
@@ -489,7 +489,7 @@ public class MyStringUtils {
 	public static boolean isEmail(String email) {
 		if (email == null || email.trim().length() == 0)
 			return false;
-		return emailer.matcher(email).matches();
+		return EMAILER.matcher(email).matches();
 	}
 
 	/**
