@@ -290,10 +290,9 @@ public class NetCenter {
     }
 
     /**
-     * 取消当前Context的请求队列
+     * 取消指定Context的请求队列
      */
-    public static void clearRequestQueue() {
-        Context context = AppManager.getAppManager().currentActivity();
+    public static void clearRequestQueue(Context context) {
         // 销毁指定Context的请求, 第二个参数true代表强制结束
         client.cancelRequests(context, true);
     }
