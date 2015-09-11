@@ -9,15 +9,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.hunter.fastandroid.R;
 import com.hunter.fastandroid.app.AppManager;
 import com.hunter.fastandroid.net.NetCenter;
-import com.hunter.fastandroid.ui.custom.TitleBar;
 
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends FragmentActivity implements IBaseView {
-    private ProgressDialog pd;
+    private ProgressDialog mProgressDialog;
     FragmentManager fragmentManager;
 
     /**
@@ -164,15 +162,15 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
 
     @Override
     public void showProgress(boolean flag, String message) {
-        if (pd == null) {
-            pd = new ProgressDialog(this);
-            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            pd.setCancelable(flag);
-            pd.setCanceledOnTouchOutside(false);
-            pd.setMessage(message);
-            pd.show();
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            mProgressDialog.setCancelable(flag);
+            mProgressDialog.setCanceledOnTouchOutside(false);
+            mProgressDialog.setMessage(message);
+            mProgressDialog.show();
         } else {
-            pd.show();
+            mProgressDialog.show();
         }
     }
 
@@ -193,11 +191,11 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
 
     @Override
     public void hideProgress() {
-        if (pd == null)
+        if (mProgressDialog == null)
             return;
 
-        if (pd.isShowing()) {
-            pd.dismiss();
+        if (mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
         }
 
         /*new AsyncTask<Void, Integer, Void>() {
@@ -217,8 +215,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
             protected void onPostExecute(Void result) {
                 super.onPostExecute(result);
 
-                if (pd != null && pd.isShowing()) {
-                    pd.dismiss();
+                if (mProgressDialog != null && mProgressDialog.isShowing()) {
+                    mProgressDialog.dismiss();
                 }
             }
         }.execute();*/

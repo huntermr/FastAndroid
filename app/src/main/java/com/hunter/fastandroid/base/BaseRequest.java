@@ -19,7 +19,7 @@ public class BaseRequest {
      * @return
      */
     public String getJsonParams() {
-        String jsonStr = CommonUtils.getGson().toJson(this);
+        String jsonStr = CommonUtils.getmGson().toJson(this);
         if (TextUtils.isEmpty(jsonStr)) {
             jsonStr = "";
         }

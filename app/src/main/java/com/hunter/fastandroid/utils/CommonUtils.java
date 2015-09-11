@@ -33,8 +33,8 @@ import java.util.regex.Pattern;
  * @author Ht
  */
 public class CommonUtils {
-    private static Gson gson;
-    private static final String gsonFormat = "yyyy-MM-dd HH:mm:ss";
+    private static Gson mGson;
+    private static final String GSON_FORMAT = "yyyy-MM-dd HH:mm:ss";
     public static SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     public static SimpleDateFormat formatDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
@@ -232,12 +232,12 @@ public class CommonUtils {
      *
      * @return
      */
-    public static Gson getGson() {
-        if (gson == null) {
-            gson = new GsonBuilder().setDateFormat(gsonFormat).create(); // 创建gson对象，并设置日期格式
+    public static Gson getmGson() {
+        if (mGson == null) {
+            mGson = new GsonBuilder().setDateFormat(GSON_FORMAT).create(); // 创建gson对象，并设置日期格式
         }
 
-        return gson;
+        return mGson;
     }
 
     /**

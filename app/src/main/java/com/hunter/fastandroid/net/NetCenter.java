@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.hunter.fastandroid.app.AppManager;
 import com.hunter.fastandroid.base.BaseRequest;
+import com.hunter.fastandroid.base.BaseRequestHeader;
 import com.hunter.fastandroid.utils.NetUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -43,17 +44,17 @@ public class NetCenter {
     // 默认Content-Type
     public static final String DEFAULT_CONTENT_TYPE = "application/json";
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    private static AsyncHttpClient mAsyncHttpClient = new AsyncHttpClient();
 
     static {
         // 设置连接超时时间
-        client.setConnectTimeout(CONNECT_TIMEOUT);
+        mAsyncHttpClient.setConnectTimeout(CONNECT_TIMEOUT);
         // 设置最大连接数
-        client.setMaxConnections(MAX_CONNECTIONS);
+        mAsyncHttpClient.setMaxConnections(MAX_CONNECTIONS);
         // 设置重连次数以及间隔时间
-        client.setMaxRetriesAndTimeout(MAX_RETRIES, RETRIES_TIMEOUT);
+        mAsyncHttpClient.setMaxRetriesAndTimeout(MAX_RETRIES, RETRIES_TIMEOUT);
         // 设置响应超时时间
-        client.setResponseTimeout(RESPONSE_TIMEOUT);
+        mAsyncHttpClient.setResponseTimeout(RESPONSE_TIMEOUT);
 
         initBaseHeader();
     }
@@ -62,7 +63,7 @@ public class NetCenter {
      * 初始化公共请求头
      */
     public static void initBaseHeader() {
-//        client.addHeader("Source", BaseRequestHeader.getSource());
+//        mAsyncHttpClient.addHeader("Source", BaseRequestHeader.getSource());
     }
 
     /**
@@ -72,14 +73,14 @@ public class NetCenter {
      * @param value
      */
     public static void setHeader(String key, String value) {
-        client.addHeader(key, value);
+        mAsyncHttpClient.addHeader(key, value);
     }
 
     /**
      * 清除所有请求头
      */
     public static void removeAllHeaders() {
-        client.removeAllHeaders();
+        mAsyncHttpClient.removeAllHeaders();
     }
 
     /**
@@ -231,19 +232,19 @@ public class NetCenter {
         switch (type) {
             case GET:
                 // 发起get请求,获取请求处理器
-                client.get(context, url, requestParams, responseHandler);
+                mAsyncHttpClient.get(context, url, requestParams, responseHandler);
                 break;
             case POST:
                 // 发起post请求,获取请求处理器
-                client.post(context, url, requestParams, responseHandler);
+                mAsyncHttpClient.post(context, url, requestParams, responseHandler);
                 break;
             case PUT:
                 // 发起put请求,获取请求处理器
                 // .....
-                client.put(context, url, requestParams, responseHandler);
+                mAsyncHttpClient.put(context, url, requestParams, responseHandler);
             default:
                 // 默认发起get请求
-                client.get(context, url, requestParams, responseHandler);
+                mAsyncHttpClient.get(context, url, requestParams, responseHandler);
                 break;
         }
     }
@@ -272,19 +273,19 @@ public class NetCenter {
         switch (type) {
             case GET:
                 // 发起get请求,获取请求处理器
-                client.get(context, url, entity, contentType, responseHandler);
+                mAsyncHttpClient.get(context, url, entity, contentType, responseHandler);
                 break;
             case POST:
                 // 发起post请求,获取请求处理器
-                client.post(context, url, entity, contentType, responseHandler);
+                mAsyncHttpClient.post(context, url, entity, contentType, responseHandler);
                 break;
             case PUT:
                 // 发起put请求,获取请求处理器
                 // .....
-                client.put(context, url, entity, contentType, responseHandler);
+                mAsyncHttpClient.put(context, url, entity, contentType, responseHandler);
             default:
                 // 默认发起get请求
-                client.get(context, url, entity, contentType, responseHandler);
+                mAsyncHttpClient.get(context, url, entity, contentType, responseHandler);
                 break;
         }
     }
@@ -294,6 +295,6 @@ public class NetCenter {
      */
     public static void clearRequestQueue(Context context) {
         // 销毁指定Context的请求, 第二个参数true代表强制结束
-        client.cancelRequests(context, true);
+        mAsyncHttpClient.cancelRequests(context, true);
     }
 }
