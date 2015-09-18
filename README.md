@@ -24,11 +24,11 @@
 10.IBaseView中封装了常用的View操作,如Toast,进度条等等,并通过BaseActivity实现了,所以建议所有Activity都继承自BaseActivity以便更好的使用本框架<br />
 11.TransactionListener该监听是Presenter用于监听Model的处理状态,可接受泛型后在onSuccess(T t)中接受处理结果<br />
 
-关于项目维护:<br />由于作者平时工作较忙,更新进度比较慢,所以希望能有一些志同道合的朋友共同来维护此项目,真诚期待有意者能联系本人。
+关于项目维护:<br />由于作者平时工作较忙,更新进度比较慢,所以希望能有一些志同道合的朋友共同来维护此项目,真诚期待有意者能联系本人！
 
 
 联系作者：Hunter <br />
-Email:hunter-android@163.com<br />
-QQ 381959281<br />
+Email:hunter-android@163.com  <br />
+QQ 381959281  <br />
 Blog:http://blog.csdn.net/ht_android<br />
 
