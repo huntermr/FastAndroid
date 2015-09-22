@@ -207,7 +207,7 @@ public class JSInterface {
     @JavascriptInterface
     public void openMobilePhone(String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
-        mContext.startActivity(intent);
+//        mContext.startActivity(intent);
     }
 
     /**

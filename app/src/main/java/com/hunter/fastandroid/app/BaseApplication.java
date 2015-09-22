@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.DisplayMetrics;
-
-import com.hunter.fastandroid.DaoMaster;
-import com.hunter.fastandroid.DaoSession;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -16,6 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.squareup.leakcanary.LeakCanary;
 
 import java.io.File;
 import java.util.Locale;
@@ -26,8 +24,6 @@ import java.util.Locale;
  * @author Ht
  */
 public class BaseApplication extends Application {
-    private static DaoMaster mDaoMaster;
-    private static DaoSession mDaoSession;
     private static BaseApplication mInstance;
 
     /**
@@ -46,6 +42,9 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        LeakCanary.install(this);
+
         mInstance = this;
 
         initImageLoader();
@@ -83,37 +82,6 @@ public class BaseApplication extends Application {
                 .defaultDisplayImageOptions(defaultOptions) // default
                 .writeDebugLogs().build();
         ImageLoader.getInstance().init(config);
-    }
-
-    /**
-     * 取得DaoMaster
-     *
-     * @param context
-     * @return
-     */
-    public static DaoMaster getDaoMaster(Context context) {
-        if (mDaoMaster == null) {
-            DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context,
-                    G.APPNAME, null);
-            mDaoMaster = new DaoMaster(helper.getWritableDatabase());
-        }
-        return mDaoMaster;
-    }
-
-    /**
-     * 取得DaoSession
-     *
-     * @param context
-     * @return
-     */
-    public static DaoSession getDaoSession(Context context) {
-        if (mDaoSession == null) {
-            if (mDaoMaster == null) {
-                mDaoMaster = getDaoMaster(context);
-            }
-            mDaoSession = mDaoMaster.newSession();
-        }
-        return mDaoSession;
     }
 
     public static Context getInstance() {

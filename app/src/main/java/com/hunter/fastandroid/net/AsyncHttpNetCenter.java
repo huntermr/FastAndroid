@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.hunter.fastandroid.app.AppManager;
 import com.hunter.fastandroid.base.BaseRequest;
-import com.hunter.fastandroid.base.BaseRequestHeader;
 import com.hunter.fastandroid.utils.NetUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -12,41 +11,39 @@ import com.loopj.android.http.RequestParams;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.protocol.HTTP;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
+ * 基于AsyncHttp封装的网络访问类
  * 网络访问控制中心 用于统一管理网络访问及初始化网络相关配置
  *
  * @author Ht
  */
-public class NetCenter {
+public class AsyncHttpNetCenter extends BaseNetCenter {
 
-    private static final int GET = 1;
-    private static final int POST = 2;
-    private static final int PUT = 3;
+    private static AsyncHttpNetCenter instance;
+    private AsyncHttpClient mAsyncHttpClient;
 
-    // 连接超时时间
-    private static final int CONNECT_TIMEOUT = 15 * 1000;
-    // 最大连接数
-    private static final int MAX_CONNECTIONS = 15;
-    // 失败重连次数
-    private static final int MAX_RETRIES = 3;
-    // 失败重连间隔时间
-    private static final int RETRIES_TIMEOUT = 5 * 1000;
-    // 响应超时时间
-    private static final int RESPONSE_TIMEOUT = 15 * 1000;
-    // 默认编码
-    public static final String CONTENT_ENCODING = HTTP.UTF_8;
-    // 默认Content-Type
-    public static final String DEFAULT_CONTENT_TYPE = "application/json";
+    private AsyncHttpNetCenter() {
+        super();
+    }
 
-    private static AsyncHttpClient mAsyncHttpClient = new AsyncHttpClient();
+    public static AsyncHttpNetCenter getInstance() {
+        if (instance == null) {
+            instance = new AsyncHttpNetCenter();
+        }
 
-    static {
+        return instance;
+    }
+
+    @Override
+    void initHttpClient() {
+        mAsyncHttpClient = new AsyncHttpClient();
         // 设置连接超时时间
         mAsyncHttpClient.setConnectTimeout(CONNECT_TIMEOUT);
         // 设置最大连接数
@@ -56,31 +53,34 @@ public class NetCenter {
         // 设置响应超时时间
         mAsyncHttpClient.setResponseTimeout(RESPONSE_TIMEOUT);
 
-        initBaseHeader();
+        insertAllHeaders();
     }
 
     /**
-     * 初始化公共请求头
+     * 放入所有公共请求头
      */
-    public static void initBaseHeader() {
-//        mAsyncHttpClient.addHeader("Source", BaseRequestHeader.getSource());
+    private void insertAllHeaders(){
+        Set<String> headerKey = baseHeader.keySet();
+        Iterator<String> iterator = headerKey.iterator();
+        while (iterator.hasNext()){
+            String key = iterator.next();
+            String value = baseHeader.get(key);
+
+            mAsyncHttpClient.addHeader(key, value);
+        }
     }
 
-    /**
-     * 设置一个请求头
-     *
-     * @param key
-     * @param value
-     */
-    public static void setHeader(String key, String value) {
-        mAsyncHttpClient.addHeader(key, value);
-    }
-
-    /**
-     * 清除所有请求头
-     */
-    public static void removeAllHeaders() {
+    @Override
+    void removeAllHeaders() {
+        baseHeader.clear();
         mAsyncHttpClient.removeAllHeaders();
+    }
+
+    @Override
+    public void setHeader(String header, String value) {
+        super.setHeader(header, value);
+        removeAllHeaders();
+        insertAllHeaders();
     }
 
     /**
@@ -89,7 +89,7 @@ public class NetCenter {
      * @param url             请求路径
      * @param responseHandler 响应回调
      */
-    public static void get(String url, AsyncHttpResponseHandler responseHandler) {
+    public void get(String url, AsyncHttpResponseHandler responseHandler) {
         // 获取一个空参数
         Map<String, String> emptyParams = Collections.emptyMap();
 
@@ -103,8 +103,8 @@ public class NetCenter {
      * @param t               继承自BaseRequest的请求参数实体类
      * @param responseHandler 响应回调
      */
-    public static <T extends BaseRequest> void get(String url, T t,
-                                                   AsyncHttpResponseHandler responseHandler) {
+    public <T extends BaseRequest> void get(String url, T t,
+                                            AsyncHttpResponseHandler responseHandler) {
         // 将实体类转换成Map
         Map<String, String> params = t.getMapParams();
 
@@ -118,8 +118,8 @@ public class NetCenter {
      * @param params          以map形式存储的参数
      * @param responseHandler 响应回调
      */
-    public static void get(String url, Map<String, String> params,
-                           AsyncHttpResponseHandler responseHandler) {
+    public void get(String url, Map<String, String> params,
+                    AsyncHttpResponseHandler responseHandler) {
 
         sendRequest(GET, url, params, responseHandler);
     }
@@ -131,8 +131,8 @@ public class NetCenter {
      * @param json            以json字符串形式存储的参数
      * @param responseHandler 响应回调
      */
-    public static void get(String url, String json,
-                           AsyncHttpResponseHandler responseHandler) {
+    public void get(String url, String json,
+                    AsyncHttpResponseHandler responseHandler) {
 
         StringEntity stringEntity = null;
 
@@ -151,7 +151,7 @@ public class NetCenter {
      * @param url             请求路径
      * @param responseHandler 响应回调
      */
-    public static void post(String url, AsyncHttpResponseHandler responseHandler) {
+    public void post(String url, AsyncHttpResponseHandler responseHandler) {
         // 获取一个空参数
         Map<String, String> emptyParams = Collections.emptyMap();
 
@@ -165,8 +165,8 @@ public class NetCenter {
      * @param t               继承自BaseRequest的请求参数实体类
      * @param responseHandler 响应回调
      */
-    public static <T extends BaseRequest> void post(String url, T t,
-                                                    AsyncHttpResponseHandler responseHandler) {
+    public <T extends BaseRequest> void post(String url, T t,
+                                             AsyncHttpResponseHandler responseHandler) {
         // 将实体类转换成Map
         Map<String, String> params = t.getMapParams();
 
@@ -180,7 +180,7 @@ public class NetCenter {
      * @param params          以map形式存储的参数
      * @param responseHandler 响应回调
      */
-    public static void post(String url, Map<String, String> params, AsyncHttpResponseHandler responseHandler) {
+    public void post(String url, Map<String, String> params, AsyncHttpResponseHandler responseHandler) {
 
         sendRequest(POST, url, params, responseHandler);
     }
@@ -192,7 +192,7 @@ public class NetCenter {
      * @param json            以json字符串形式存储的参数
      * @param responseHandler 响应回调
      */
-    public static void post(String url, String json, AsyncHttpResponseHandler responseHandler) {
+    public void post(String url, String json, AsyncHttpResponseHandler responseHandler) {
         StringEntity stringEntity = null;
 
         try {
@@ -212,8 +212,8 @@ public class NetCenter {
      * @param params          请求参数
      * @param responseHandler 响应回调
      */
-    private static void sendRequest(int type,
-                                    String url, Map<String, String> params, AsyncHttpResponseHandler responseHandler) {
+    void sendRequest(int type,
+                     String url, Map<String, String> params, AsyncHttpResponseHandler responseHandler) {
         // 将Map转换成请求参数
         RequestParams requestParams = new RequestParams(params);
         requestParams.setContentEncoding(CONTENT_ENCODING);
@@ -257,8 +257,8 @@ public class NetCenter {
      * @param entity          请求体
      * @param responseHandler 响应回调
      */
-    private static void sendRequest(int type,
-                                    String url, HttpEntity entity, String contentType, AsyncHttpResponseHandler responseHandler) {
+    void sendRequest(int type,
+                     String url, HttpEntity entity, String contentType, AsyncHttpResponseHandler responseHandler) {
         // 获取当前页面的Context
         Context context = AppManager.getAppManager().currentActivity();
 
@@ -290,10 +290,8 @@ public class NetCenter {
         }
     }
 
-    /**
-     * 取消指定Context的请求队列
-     */
-    public static void clearRequestQueue(Context context) {
+    @Override
+    public void clearRequestQueue(Context context) {
         // 销毁指定Context的请求, 第二个参数true代表强制结束
         mAsyncHttpClient.cancelRequests(context, true);
     }

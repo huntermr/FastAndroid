@@ -10,7 +10,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.hunter.fastandroid.app.AppManager;
-import com.hunter.fastandroid.net.NetCenter;
+import com.hunter.fastandroid.net.AsyncHttpNetCenter;
 
 import butterknife.ButterKnife;
 
@@ -57,7 +57,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
     @Override
     protected void onDestroy() {
         // 清除网络请求队列
-        NetCenter.clearRequestQueue(this);
+        AsyncHttpNetCenter.getInstance().clearRequestQueue(this);
         // 将该Activity从堆栈移除
         AppManager.getAppManager().removeActivity(this);
         super.onDestroy();

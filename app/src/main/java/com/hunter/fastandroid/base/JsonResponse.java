@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import com.google.gson.JsonSyntaxException;
 import com.hunter.fastandroid.utils.CommonUtils;
 
-public class Response extends BaseResponse {
+public class JsonResponse extends BaseResponse {
 
     /**
      * 解析json,获取响应对象
@@ -17,8 +17,8 @@ public class Response extends BaseResponse {
      * @param json
      * @return
      */
-    public static Response getResponse(String json) {
-        Response mResponse = new Response();
+    public static JsonResponse getResponse(String json) {
+        JsonResponse mResponse = new JsonResponse();
         int code = 0;
         String msg = "";
         String data = "";
@@ -58,8 +58,8 @@ public class Response extends BaseResponse {
      * @param json
      * @return
      */
-    public static Response getOnlyDataResponse(String json) {
-        Response mResponse = new Response();
+    public static JsonResponse getOnlyDataResponse(String json) {
+        JsonResponse mResponse = new JsonResponse();
 
         mResponse.setData(json);
 
@@ -70,7 +70,7 @@ public class Response extends BaseResponse {
             JsonSyntaxException {
         if (TextUtils.isEmpty(getData()))
             throw new IllegalArgumentException(
-                    "In the Response, data can't be empty");
+                    "In the JsonResponse, data can't be empty");
 
         T object = CommonUtils.getmGson().fromJson(getData(), clazz);
 
@@ -81,7 +81,7 @@ public class Response extends BaseResponse {
             JsonSyntaxException {
         if (TextUtils.isEmpty(getData()))
             throw new IllegalArgumentException(
-                    "In the Response, data can't be empty");
+                    "In the JsonResponse, data can't be empty");
 
         T object = CommonUtils.getmGson().fromJson(getData(), typeOfT);
 
