@@ -5,6 +5,6 @@ package com.hunter.fastandroid.base;
  *
  * @author user
  */
-public class BaseRequestHeader {
+public class BaseRequestHeader extends BaseRequest {
 
 }

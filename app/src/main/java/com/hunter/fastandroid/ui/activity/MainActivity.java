@@ -4,15 +4,20 @@ import android.widget.TextView;
 
 import com.hunter.fastandroid.R;
 import com.hunter.fastandroid.base.BaseActivity;
+import com.hunter.fastandroid.presenter.impl.LoginPresenterImpl;
+import com.hunter.fastandroid.presenter.interfaces.ILoginPresenter;
 import com.hunter.fastandroid.ui.custom.TitleBar;
+import com.hunter.fastandroid.ui.view.interfaces.ILoginView;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 
-public class MainActivity extends BaseActivity {
-    @InjectView(R.id.title_bar)
+public class MainActivity extends BaseActivity implements ILoginView {
+    @Bind(R.id.title_bar)
     TitleBar titleBar;
-    @InjectView(R.id.tv_content)
+    @Bind(R.id.tv_content)
     TextView tvContent;
+
+    ILoginPresenter loginPresenter;
 
     @Override
     public void initContentView() {
@@ -22,12 +27,17 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        titleBar.setTitle("首页");
-        tvContent.setText("Hello FastAndroid!");
+        tvContent.setText("加载中...");
+        loginPresenter.login("", "");
     }
 
     @Override
     public void initPresenter() {
+        loginPresenter = new LoginPresenterImpl(this);
+    }
 
+    @Override
+    public void loginCallback(String message) {
+        tvContent.setText(message);
     }
 }

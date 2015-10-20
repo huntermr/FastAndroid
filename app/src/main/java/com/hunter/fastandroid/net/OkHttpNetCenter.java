@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.hunter.fastandroid.app.AppManager;
 import com.hunter.fastandroid.base.BaseRequest;
+import com.hunter.fastandroid.utils.Logger;
 import com.hunter.fastandroid.utils.NetUtils;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -205,6 +206,12 @@ public class OkHttpNetCenter extends BaseNetCenter {
         if (!NetUtils.isNetworkConnected(context)) {
             return;
         }
+
+        Logger.i("HTTP-Request,tools：okHttp");
+        Logger.i("HTTP-Request,url：" + url);
+        Logger.i("HTTP-Request,mothed：" + (type == GET ? "GET" : "POST"));
+        Logger.i("HTTP-Request,header：" + baseHeader.toString());
+        Logger.i("HTTP-Request,params：" + params.toString());
 
         mOkHttpClient.newCall(request).enqueue(callback);
     }

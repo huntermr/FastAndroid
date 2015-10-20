@@ -21,4 +21,10 @@
         <item name="android:textSize">12sp</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <!--星期单选框样式-->
+    <style name="WeekCheckbox">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

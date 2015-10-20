@@ -72,7 +72,7 @@ public class JsonResponse extends BaseResponse {
             throw new IllegalArgumentException(
                     "In the JsonResponse, data can't be empty");
 
-        T object = CommonUtils.getmGson().fromJson(getData(), clazz);
+        T object = CommonUtils.getGson().fromJson(getData(), clazz);
 
         return object;
     }
@@ -83,7 +83,7 @@ public class JsonResponse extends BaseResponse {
             throw new IllegalArgumentException(
                     "In the JsonResponse, data can't be empty");
 
-        T object = CommonUtils.getmGson().fromJson(getData(), typeOfT);
+        T object = CommonUtils.getGson().fromJson(getData(), typeOfT);
 
         return object;
     }

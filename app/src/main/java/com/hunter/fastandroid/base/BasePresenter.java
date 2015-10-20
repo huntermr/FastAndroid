@@ -1,5 +1,9 @@
 package com.hunter.fastandroid.base;
 
+/**
+ * 公共Presenter,所有Presenter继承自此类
+ * @param <V>
+ */
 public abstract class BasePresenter<V extends IBaseView> {
     public V mView;
 

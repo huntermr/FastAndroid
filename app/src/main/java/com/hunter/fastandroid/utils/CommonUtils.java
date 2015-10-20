@@ -36,6 +36,8 @@ public class CommonUtils {
     private static Gson mGson;
     private static final String GSON_FORMAT = "yyyy-MM-dd HH:mm:ss";
     public static SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    public static SimpleDateFormat formatDay = new SimpleDateFormat("d", Locale.getDefault());
+    public static SimpleDateFormat formatMonthDay = new SimpleDateFormat("M-d", Locale.getDefault());
     public static SimpleDateFormat formatDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
     private CommonUtils() {
@@ -232,7 +234,7 @@ public class CommonUtils {
      *
      * @return
      */
-    public static Gson getmGson() {
+    public static Gson getGson() {
         if (mGson == null) {
             mGson = new GsonBuilder().setDateFormat(GSON_FORMAT).create(); // 创建gson对象，并设置日期格式
         }

@@ -2,9 +2,13 @@ package com.hunter.fastandroid.net;
 
 import android.content.Context;
 
+import com.hunter.fastandroid.base.BaseRequestHeader;
+import com.hunter.fastandroid.utils.CommonUtils;
+
 import org.apache.http.protocol.HTTP;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 基于第三方网络框架封装的网络访问类
@@ -17,7 +21,7 @@ public abstract class BaseNetCenter {
     static final int POST = 2;
     static final int PUT = 3;
 
-    HashMap<String, String> baseHeader;
+    Map<String, String> baseHeader;
 
     // 连接超时时间
     static final int CONNECT_TIMEOUT = 15 * 1000;
@@ -54,7 +58,11 @@ public abstract class BaseNetCenter {
      */
     void initBaseHeaders() {
         baseHeader = new HashMap<>();
-        baseHeader.put("base", "value");
+        BaseRequestHeader baseRequestHeader = new BaseRequestHeader();
+        Map<String, String> mapParams = baseRequestHeader.getMapParams();
+        if(mapParams != null){
+            baseHeader = mapParams;
+        }
     }
 
     /**
@@ -63,12 +71,21 @@ public abstract class BaseNetCenter {
      * @param header
      * @param value
      */
-    void setHeader(String header, String value) {
+    public void setHeader(String header, String value) {
         baseHeader.put(header, value);
+    }
+
+    /**
+     * 移除指定请求头
+     *
+     * @param header
+     */
+    public void removeHeader(String header) {
+        baseHeader.remove(header);
     }
 
     /**
      * 取消指定Context的请求队列
      */
-    abstract void clearRequestQueue(Context context);
+    public abstract void clearRequestQueue(Context context);
 }

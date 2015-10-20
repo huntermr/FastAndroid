@@ -109,4 +109,5 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return mFragments == null ? 0 : mFragments.size();
     }
+
 }

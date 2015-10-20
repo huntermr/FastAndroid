@@ -22,11 +22,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
      */
     public abstract void initView();
 
-    /**
-     * 初始化标题栏
-     */
-    public abstract void initTitleBar();
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +30,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mLayoutView = getCreateView(inflater, container);
-        ButterKnife.inject(this, mLayoutView);
+        ButterKnife.bind(this, mLayoutView);
         initView();
         return mLayoutView;
     }

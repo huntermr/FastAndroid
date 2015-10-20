@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 公共请求参数
+ * 公共请求
  */
 public class BaseRequest {
     /**
@@ -19,7 +19,7 @@ public class BaseRequest {
      * @return
      */
     public String getJsonParams() {
-        String jsonStr = CommonUtils.getmGson().toJson(this);
+        String jsonStr = CommonUtils.getGson().toJson(this);
         if (TextUtils.isEmpty(jsonStr)) {
             jsonStr = "";
         }

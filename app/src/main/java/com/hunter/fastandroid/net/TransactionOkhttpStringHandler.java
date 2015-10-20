@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.hunter.fastandroid.base.JsonResponse;
+import com.hunter.fastandroid.utils.Logger;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -64,10 +65,14 @@ public class TransactionOkhttpStringHandler implements Callback {
 
     @Override
     public void onResponse(Response response) throws IOException {
+        String data = response.body().string();
+
+        Logger.e("HTTP-Response,data：" + data);
+
         if (response.isSuccessful()) {
             Message message = new Message();
             message.what = SUCCESS;
-            message.obj = response.body().string();
+            message.obj = data;
             myHandler.sendMessage(message);
         }else{
             myHandler.sendEmptyMessage(FAILURE);

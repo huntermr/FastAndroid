@@ -48,7 +48,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         // 将该Activity加入堆栈
         AppManager.getAppManager().addActivity(this);
         // 初始化View注入
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initPresenter();
         initView();
         initListener();

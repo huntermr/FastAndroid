@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.hunter.fastandroid.app.AppManager;
 import com.hunter.fastandroid.base.BaseRequest;
+import com.hunter.fastandroid.utils.Logger;
 import com.hunter.fastandroid.utils.NetUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -79,8 +80,13 @@ public class AsyncHttpNetCenter extends BaseNetCenter {
     @Override
     public void setHeader(String header, String value) {
         super.setHeader(header, value);
-        removeAllHeaders();
-        insertAllHeaders();
+        mAsyncHttpClient.addHeader(header, value);
+    }
+
+    @Override
+    public void removeHeader(String header) {
+        super.removeHeader(header);
+        mAsyncHttpClient.removeHeader(header);
     }
 
     /**
@@ -226,6 +232,12 @@ public class AsyncHttpNetCenter extends BaseNetCenter {
             responseHandler.onFailure(ResponseCode.ERROR_NETWORK_NOT_AVAILABLE, null, null, null);
             return;
         }
+
+        Logger.i("HTTP-Request,tools：Async-Http");
+        Logger.i("HTTP-Request,url：" + url);
+        Logger.i("HTTP-Request,mothed：" + (type == GET ? "GET" : "POST"));
+        Logger.i("HTTP-Request,header：" + baseHeader.toString());
+        Logger.i("HTTP-Request,params：" + params.toString());
 
         // 根据传入类型调用不同请求方法,可自行扩展
         // 传入Context以便与生命周期联动
