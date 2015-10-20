@@ -8,6 +8,8 @@ import com.hunter.fastandroid.presenter.impl.LoginPresenterImpl;
 import com.hunter.fastandroid.presenter.interfaces.ILoginPresenter;
 import com.hunter.fastandroid.ui.custom.TitleBar;
 import com.hunter.fastandroid.ui.view.interfaces.ILoginView;
+import com.hunter.fastandroid.vo.request.LoginRequest;
+import com.hunter.fastandroid.vo.response.UserInfo;
 
 import butterknife.Bind;
 
@@ -27,8 +29,12 @@ public class MainActivity extends BaseActivity implements ILoginView {
 
     @Override
     public void initView() {
-        tvContent.setText("加载中...");
-        loginPresenter.login("", "");
+        titleBar.setTitle("测试页面");
+        tvContent.setText("登录中...");
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.userName = "";
+        loginRequest.password = "";
+        loginPresenter.login(loginRequest);
     }
 
     @Override
@@ -37,7 +43,7 @@ public class MainActivity extends BaseActivity implements ILoginView {
     }
 
     @Override
-    public void loginCallback(String message) {
-        tvContent.setText(message);
+    public void loginCallback(UserInfo userInfo) {
+        tvContent.setText(userInfo.toString());
     }
 }
