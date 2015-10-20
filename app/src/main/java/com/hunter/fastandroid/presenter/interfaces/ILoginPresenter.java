@@ -1,13 +1,14 @@
 package com.hunter.fastandroid.presenter.interfaces;
 
+import com.hunter.fastandroid.vo.request.LoginRequest;
+
 /**
  * Created by Administrator on 2015/10/20.
  */
 public interface ILoginPresenter {
     /**
      * 登录
-     * @param userName
-     * @param password
+     * @param loginRequest
      */
-    void login(String userName, String password);
+    void login(LoginRequest loginRequest);
 }

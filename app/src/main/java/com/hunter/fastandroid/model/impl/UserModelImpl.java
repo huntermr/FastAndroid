@@ -3,6 +3,7 @@ package com.hunter.fastandroid.model.impl;
 import com.hunter.fastandroid.base.BaseModel;
 import com.hunter.fastandroid.model.interfaces.IUserModel;
 import com.hunter.fastandroid.net.TransactionListener;
+import com.hunter.fastandroid.vo.request.LoginRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,11 +13,11 @@ import java.util.Map;
  */
 public class UserModelImpl extends BaseModel implements IUserModel{
     @Override
-    public void login(String userName, String password, TransactionListener transactionListener) {
+    public void login(LoginRequest loginRequest, TransactionListener transactionListener) {
         Map<String, String> params = new HashMap<>();
-        params.put("userName", userName);
-        params.put("password", password);
+        params.put("userName", loginRequest.userName);
+        params.put("password", loginRequest.password);
 
-        get("http://www.baidu.com", transactionListener);
+        post("http://www.baidu.com", params, transactionListener);
     }
 }
