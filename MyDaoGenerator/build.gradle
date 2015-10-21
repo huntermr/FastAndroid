@@ -1,0 +1,21 @@
+project(':MyDaoGenerator') {
+    apply plugin: 'application'
+    apply plugin: 'java'
+
+    mainClassName = "com.huntermr.fastandroid.MyDaoGenerator"
+    // edit output direction
+    def outputDir = "../app/src/main/java-gen"
+
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+    }
+
+    task createDocs {
+        def docs = file(outputDir)
+        docs.mkdirs()
+    }
+
+    run {
+        args outputDir
+    }
+}
