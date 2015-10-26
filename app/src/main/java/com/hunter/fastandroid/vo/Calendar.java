@@ -1,4 +1,4 @@
-package com.hunter.fastandroid.ui.activity;
+package com.hunter.fastandroid.vo;
 
 import java.util.Date;
 

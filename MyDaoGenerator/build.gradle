@@ -2,7 +2,7 @@ project(':MyDaoGenerator') {
     apply plugin: 'application'
     apply plugin: 'java'
 
-    mainClassName = "com.huntermr.fastandroid.MyDaoGenerator"
+    mainClassName = "com.hunter.fastandroid.MyDaoGenerator"
     // edit output direction
     def outputDir = "../app/src/main/java-gen"
 

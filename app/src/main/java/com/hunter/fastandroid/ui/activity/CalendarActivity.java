@@ -17,6 +17,7 @@ import com.hunter.fastandroid.adapter.CalendarAdapter;
 import com.hunter.fastandroid.base.BaseActivity;
 import com.hunter.fastandroid.utils.CalendarUtils;
 import com.hunter.fastandroid.utils.Logger;
+import com.hunter.fastandroid.vo.Calendar;
 
 import java.util.Date;
 import java.util.HashMap;

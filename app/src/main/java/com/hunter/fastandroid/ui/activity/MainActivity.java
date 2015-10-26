@@ -1,5 +1,6 @@
 package com.hunter.fastandroid.ui.activity;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.hunter.fastandroid.R;
@@ -35,6 +36,13 @@ public class MainActivity extends BaseActivity implements ILoginView {
         loginRequest.userName = "";
         loginRequest.password = "";
         loginPresenter.login(loginRequest);
+
+        showConfirmDialog("测试自定义", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("哈哈");
+            }
+        });
     }
 
     @Override

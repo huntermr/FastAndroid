@@ -1,4 +1,4 @@
-package com.huntermr.fastandroid;
+package com.hunter.fastandroid;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

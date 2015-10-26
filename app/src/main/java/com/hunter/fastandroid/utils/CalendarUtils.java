@@ -1,6 +1,6 @@
 package com.hunter.fastandroid.utils;
 
-import com.hunter.fastandroid.ui.activity.Calendar;
+import com.hunter.fastandroid.vo.Calendar;
 
 import java.util.ArrayList;
 import java.util.Date;

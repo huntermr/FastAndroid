@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.hunter.fastandroid.R;
 
 /**
- * 自定义头部布局
+ * 自定义标题栏
  *
  * @author Ht
  * @ClassName: TitleBar
