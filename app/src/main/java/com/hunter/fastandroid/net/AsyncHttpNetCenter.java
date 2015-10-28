@@ -60,10 +60,10 @@ public class AsyncHttpNetCenter extends BaseNetCenter {
     /**
      * 放入所有公共请求头
      */
-    private void insertAllHeaders(){
+    private void insertAllHeaders() {
         Set<String> headerKey = baseHeader.keySet();
         Iterator<String> iterator = headerKey.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             String key = iterator.next();
             String value = baseHeader.get(key);
 
@@ -186,6 +186,18 @@ public class AsyncHttpNetCenter extends BaseNetCenter {
      * @param params          以map形式存储的参数
      * @param responseHandler 响应回调
      */
+    public void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+
+        sendRequest(POST, url, params, responseHandler);
+    }
+
+    /**
+     * 发起带参数post请求
+     *
+     * @param url             请求路径
+     * @param params          以map形式存储的参数
+     * @param responseHandler 响应回调
+     */
     public void post(String url, Map<String, String> params, AsyncHttpResponseHandler responseHandler) {
 
         sendRequest(POST, url, params, responseHandler);
@@ -215,15 +227,11 @@ public class AsyncHttpNetCenter extends BaseNetCenter {
      *
      * @param type            请求类型
      * @param url             请求路径
-     * @param params          请求参数
+     * @param requestParams   请求参数
      * @param responseHandler 响应回调
      */
     void sendRequest(int type,
-                     String url, Map<String, String> params, AsyncHttpResponseHandler responseHandler) {
-        // 将Map转换成请求参数
-        RequestParams requestParams = new RequestParams(params);
-        requestParams.setContentEncoding(CONTENT_ENCODING);
-
+                     String url, RequestParams requestParams, AsyncHttpResponseHandler responseHandler) {
         // 获取当前页面的Context
         Context context = AppManager.getAppManager().currentActivity();
 
@@ -237,7 +245,7 @@ public class AsyncHttpNetCenter extends BaseNetCenter {
         Logger.i("HTTP-Request,url：" + url);
         Logger.i("HTTP-Request,mothed：" + (type == GET ? "GET" : "POST"));
         Logger.i("HTTP-Request,header：" + baseHeader.toString());
-        Logger.i("HTTP-Request,params：" + params.toString());
+        Logger.i("HTTP-Request,params：" + requestParams.toString());
 
         // 根据传入类型调用不同请求方法,可自行扩展
         // 传入Context以便与生命周期联动
@@ -259,6 +267,23 @@ public class AsyncHttpNetCenter extends BaseNetCenter {
                 mAsyncHttpClient.get(context, url, requestParams, responseHandler);
                 break;
         }
+    }
+
+    /**
+     * 发起可设置请求参数的网络请求
+     *
+     * @param type            请求类型
+     * @param url             请求路径
+     * @param params          请求参数
+     * @param responseHandler 响应回调
+     */
+    void sendRequest(int type,
+                     String url, Map<String, String> params, AsyncHttpResponseHandler responseHandler) {
+        // 将Map转换成请求参数
+        RequestParams requestParams = new RequestParams(params);
+        requestParams.setContentEncoding(CONTENT_ENCODING);
+
+        sendRequest(type, url, requestParams, responseHandler);
     }
 
     /**

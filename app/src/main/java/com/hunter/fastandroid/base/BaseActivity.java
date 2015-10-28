@@ -57,8 +57,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
     @Override
     protected void onDestroy() {
         // 清除网络请求队列
-        OkHttpNetCenter.getInstance().clearRequestQueue(this);
-//        AsyncHttpNetCenter.getInstance().clearRequestQueue(this);
+        AsyncHttpNetCenter.getInstance().clearRequestQueue(this);
+//        OkHttpNetCenter.getInstance().clearRequestQueue(this);
 
         // 将该Activity从堆栈移除
         AppManager.getAppManager().removeActivity(this);
