@@ -4,7 +4,7 @@ import com.hunter.fastandroid.base.BasePresenter;
 import com.hunter.fastandroid.base.BaseResponse;
 import com.hunter.fastandroid.model.impl.UserModelImpl;
 import com.hunter.fastandroid.model.interfaces.IUserModel;
-import com.hunter.fastandroid.net.TransactionListener;
+import com.hunter.fastandroid.net.JsonTransactionListener;
 import com.hunter.fastandroid.presenter.interfaces.ILoginPresenter;
 import com.hunter.fastandroid.ui.view.interfaces.ILoginView;
 import com.hunter.fastandroid.utils.CommonUtils;
@@ -22,7 +22,7 @@ public class LoginPresenterImpl extends BasePresenter implements ILoginPresenter
 
         // 实例化用户模型,调用登录方法,传入接口所需参数
         IUserModel userModel = new UserModelImpl(loginView.getContext());
-        userModel.login(loginRequest, new TransactionListener() {
+        userModel.login(loginRequest, new JsonTransactionListener() {
             @Override
             public void onSuccess(BaseResponse response) {
                 if (response.isSuccess()) {

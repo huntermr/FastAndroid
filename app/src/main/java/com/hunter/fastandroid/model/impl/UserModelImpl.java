@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.hunter.fastandroid.base.BaseModel;
 import com.hunter.fastandroid.model.interfaces.IUserModel;
-import com.hunter.fastandroid.net.TransactionListener;
+import com.hunter.fastandroid.net.JsonTransactionListener;
 import com.hunter.fastandroid.vo.request.LoginRequest;
 
 /**
@@ -17,7 +17,7 @@ public class UserModelImpl extends BaseModel implements IUserModel {
     }
 
     @Override
-    public void login(LoginRequest loginRequest, TransactionListener transactionListener) {
+    public void login(LoginRequest loginRequest, JsonTransactionListener transactionListener) {
         post(getContext(), "http://www.baidu.com", loginRequest, transactionListener);
     }
 }

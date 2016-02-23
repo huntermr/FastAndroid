@@ -1,20 +1,19 @@
 package com.hunter.fastandroid.net;
 
-import com.hunter.fastandroid.base.JsonResponse;
 import com.hunter.fastandroid.utils.Logger;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.apache.http.Header;
 
 public class TransactionAsyncHttpStringHandler extends TextHttpResponseHandler {
-    TransactionListener mTransactionListener;
+    StringTransactionListener mTransactionListener;
 
     /**
      * 自定义http响应处理器
      *
      * @param mTransactionListener
      */
-    public TransactionAsyncHttpStringHandler(TransactionListener mTransactionListener) {
+    public TransactionAsyncHttpStringHandler(StringTransactionListener mTransactionListener) {
         this.mTransactionListener = mTransactionListener;
         setCharset(AsyncHttpNetCenter.CONTENT_ENCODING);
     }
@@ -28,7 +27,6 @@ public class TransactionAsyncHttpStringHandler extends TextHttpResponseHandler {
     public void onSuccess(int statusCode, Header[] headers, String responseString) {
         Logger.e("HTTP-Response,data：" + responseString);
 
-        JsonResponse response = JsonResponse.getResponse(responseString);
-        mTransactionListener.onSuccess(response);
+        mTransactionListener.onSuccess(responseString);
     }
 }

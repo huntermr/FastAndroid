@@ -1,21 +1,15 @@
 package com.hunter.fastandroid.utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
+import com.hunter.fastandroid.base.BaseRequest;
+
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.widget.Toast;
-
-import com.hunter.fastandroid.R;
-import com.hunter.fastandroid.app.AppManager;
-import com.hunter.fastandroid.base.BaseActivity;
-import com.hunter.fastandroid.base.BaseRequest;
 
 /**
  * 网络相关工具类

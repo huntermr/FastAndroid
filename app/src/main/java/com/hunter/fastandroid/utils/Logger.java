@@ -1,9 +1,7 @@
 package com.hunter.fastandroid.utils;
 
-import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
-
-import com.hunter.fastandroid.app.AppManager;
 
 
 /**
@@ -28,10 +26,31 @@ public class Logger {
      *
      * @param msg
      */
+    public static void i(Context context, String msg) {
+        if (mDebug) {
+            Log.i("*** CurrentPage：" + context.getClass().getSimpleName() + "  Log", msg);
+        }
+    }
+
+    /**
+     * 打印info级别的log
+     *
+     * @param msg
+     */
     public static void i(String msg) {
         if (mDebug) {
-            Activity activity = AppManager.getAppManager().currentActivity();
-            Log.i("*** CurrentPage：" + activity.getClass().getSimpleName() + "  Log", msg);
+            Log.i("Log-----info", msg);
+        }
+    }
+
+    /**
+     * 打印error级别的log
+     *
+     * @param msg
+     */
+    public static void e(Context context, String msg) {
+        if (mDebug) {
+            Log.e("*** CurrentPage：" + context.getClass().getSimpleName() + "  Log", msg);
         }
     }
 
@@ -42,8 +61,7 @@ public class Logger {
      */
     public static void e(String msg) {
         if (mDebug) {
-            Activity activity = AppManager.getAppManager().currentActivity();
-            Log.e("*** CurrentPage：" + activity.getClass().getSimpleName() + "  Log", msg);
+            Log.e("Log-----error", msg);
         }
     }
 }

@@ -3,8 +3,9 @@ package com.hunter.fastandroid.base;
 import android.content.Context;
 
 import com.hunter.fastandroid.net.AsyncHttpNetCenter;
+import com.hunter.fastandroid.net.StringTransactionListener;
 import com.hunter.fastandroid.net.TransactionAsyncHttpStringHandler;
-import com.hunter.fastandroid.net.TransactionListener;
+import com.hunter.fastandroid.net.JsonTransactionListener;
 import com.loopj.android.http.RequestParams;
 
 import java.util.Collections;
@@ -31,7 +32,7 @@ public abstract class BaseModel {
      * @param url
      * @param transactionListener
      */
-    public void get(Context context, String url, TransactionListener transactionListener) {
+    public void get(Context context, String url, StringTransactionListener transactionListener) {
         // 获取一个空参数
         Map<String, String> emptyParams = Collections.emptyMap();
 
@@ -47,7 +48,7 @@ public abstract class BaseModel {
      * @param transactionListener
      * @param <T>
      */
-    public <T extends BaseRequest> void get(Context context, String url, T t, TransactionListener transactionListener) {
+    public <T extends BaseRequest> void get(Context context, String url, T t, StringTransactionListener transactionListener) {
         get(context, url, t.getMapParams(), transactionListener);
     }
 
@@ -59,7 +60,7 @@ public abstract class BaseModel {
      * @param params
      * @param transactionListener
      */
-    public void get(Context context, String url, Map<String, String> params, TransactionListener transactionListener) {
+    public void get(Context context, String url, Map<String, String> params, StringTransactionListener transactionListener) {
         AsyncHttpNetCenter.getInstance().sendRequest(context, AsyncHttpNetCenter.GET, url, params, new TransactionAsyncHttpStringHandler(transactionListener));
     }
 
@@ -71,7 +72,7 @@ public abstract class BaseModel {
      * @param requestParams
      * @param transactionListener
      */
-    public void get(Context context, String url, RequestParams requestParams, TransactionListener transactionListener) {
+    public void get(Context context, String url, RequestParams requestParams, StringTransactionListener transactionListener) {
         AsyncHttpNetCenter.getInstance().sendRequest(context, AsyncHttpNetCenter.GET, url, requestParams, new TransactionAsyncHttpStringHandler(transactionListener));
     }
 
@@ -82,7 +83,7 @@ public abstract class BaseModel {
      * @param url
      * @param transactionListener
      */
-    public void post(Context context, String url, TransactionListener transactionListener) {
+    public void post(Context context, String url, StringTransactionListener transactionListener) {
         // 获取一个空参数
         Map<String, String> emptyParams = Collections.emptyMap();
 
@@ -98,7 +99,7 @@ public abstract class BaseModel {
      * @param transactionListener
      * @param <T>
      */
-    public <T extends BaseRequest> void post(Context context, String url, T t, TransactionListener transactionListener) {
+    public <T extends BaseRequest> void post(Context context, String url, T t, StringTransactionListener transactionListener) {
         post(context, url, t.getMapParams(), transactionListener);
     }
 
@@ -110,7 +111,7 @@ public abstract class BaseModel {
      * @param params
      * @param transactionListener
      */
-    public void post(Context context, String url, Map<String, String> params, TransactionListener transactionListener) {
+    public void post(Context context, String url, Map<String, String> params, StringTransactionListener transactionListener) {
         AsyncHttpNetCenter.getInstance().sendRequest(context, AsyncHttpNetCenter.POST, url, params, new TransactionAsyncHttpStringHandler(transactionListener));
     }
 
@@ -122,7 +123,7 @@ public abstract class BaseModel {
      * @param params
      * @param transactionListener
      */
-    public void post(Context context, String url, RequestParams params, TransactionListener transactionListener) {
+    public void post(Context context, String url, RequestParams params, StringTransactionListener transactionListener) {
         AsyncHttpNetCenter.getInstance().sendRequest(context, AsyncHttpNetCenter.POST, url, params, new TransactionAsyncHttpStringHandler(transactionListener));
     }
 

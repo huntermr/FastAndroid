@@ -6,9 +6,12 @@ package com.hunter.fastandroid.net;
  * @author Ht
  */
 public class URLs {
-    public static final String HOST = "http://xxx.xxx.xxx";
-    public static final String PROJECT_NAME = "";
+    public static final String HOST = "http://apis.juhe.cn/";
+    public static final String PROJECT_NAME = "mobile/";
     public static final String API = "";
+
+    // 归属地查询
+    public static final String TEST_API = "get";
 
     // 用户模块
     /**

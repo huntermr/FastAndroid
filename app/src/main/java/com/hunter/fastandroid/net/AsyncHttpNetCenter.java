@@ -83,6 +83,7 @@ public class AsyncHttpNetCenter {
 
     /**
      * 以key,value设置一个请求头
+     *
      * @param header
      * @param value
      */
@@ -106,6 +107,7 @@ public class AsyncHttpNetCenter {
 
     /**
      * 移除指定key的请求头
+     *
      * @param header
      */
     public void removeHeader(String header) {
@@ -190,11 +192,11 @@ public class AsyncHttpNetCenter {
         }
 
         if (requestParams != null) {
-            Logger.i("HTTP-Request,tools：Async-Http");
-            Logger.i("HTTP-Request,url：" + url);
-            Logger.i("HTTP-Request,mothed：" + (type == GET ? "GET" : "POST"));
-            Logger.i("HTTP-Request,header：" + baseHeader.toString());
-            Logger.i("HTTP-Request,params：" + requestParams.toString());
+            Logger.i(context, "HTTP-Request,tools：Async-Http");
+            Logger.i(context, "HTTP-Request,url：" + url);
+            Logger.i(context, "HTTP-Request,mothed：" + (type == GET ? "GET" : "POST"));
+            Logger.i(context, "HTTP-Request,header：" + baseHeader.toString());
+            Logger.i(context, "HTTP-Request,params：" + requestParams.toString());
 
             // 根据传入类型调用不同请求方法,可自行扩展
             // 传入Context以便与生命周期联动
@@ -213,12 +215,12 @@ public class AsyncHttpNetCenter {
                     break;
             }
         } else if (entity != null) {
-            Logger.i("HTTP-Request,tools：Async-Http");
-            Logger.i("HTTP-Request,url：" + url);
-            Logger.i("HTTP-Request,mothed：" + (type == GET ? "GET" : "POST"));
-            Logger.i("HTTP-Request,header：" + baseHeader.toString());
-            Logger.i("HTTP-Request,params：" + entity.toString());
-            Logger.i("HTTP-Request,content-Type：" + contentType);
+            Logger.i(context, "HTTP-Request,tools：Async-Http");
+            Logger.i(context, "HTTP-Request,url：" + url);
+            Logger.i(context, "HTTP-Request,mothed：" + (type == GET ? "GET" : "POST"));
+            Logger.i(context, "HTTP-Request,header：" + baseHeader.toString());
+            Logger.i(context, "HTTP-Request,params：" + entity.toString());
+            Logger.i(context, "HTTP-Request,content-Type：" + contentType);
 
             // 根据传入类型调用不同请求方法,可自行扩展
             // 传入Context以便与生命周期联动

@@ -1,19 +1,15 @@
 package com.hunter.fastandroid.net;
 
-import com.hunter.fastandroid.base.BaseResponse;
-
 /**
  * 事务处理监听
  */
-public abstract class TransactionListener<T> {
+public abstract class StringTransactionListener {
     /**
-     * 带数据的成功回调
+     * 带字符串数据的成功回调
      *
      * @param response
      */
-    public void onSuccess(BaseResponse response) {
-
-    }
+    public abstract void onSuccess(String response);
 
     /**
      * 带错误码的失败回调
