@@ -19,16 +19,16 @@ public class JsonResponse extends BaseResponse {
      */
     public static JsonResponse getResponse(String json) {
         JsonResponse mResponse = new JsonResponse();
-        int code = 0;
+        boolean success = false;
         String msg = "";
         String data = "";
 
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
-            boolean hasCode = jsonObject.has("code");
+            boolean hasCode = jsonObject.has("success");
             if (hasCode) {
-                code = jsonObject.getInt("code");
+                success = jsonObject.getBoolean("success");
             }
 
             boolean hasMessage = jsonObject.has("message");
@@ -45,7 +45,7 @@ public class JsonResponse extends BaseResponse {
             e.printStackTrace();
         }
 
-        mResponse.setCode(code);
+        mResponse.setSuccess(success);
         mResponse.setMsg(msg);
         mResponse.setData(data);
 

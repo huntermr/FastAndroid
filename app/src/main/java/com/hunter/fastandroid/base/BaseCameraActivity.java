@@ -25,6 +25,7 @@ public abstract class BaseCameraActivity extends BaseActivity {
     public static final int ACTION_CAMERA = 0;
     public static final int ACTION_ALBUM = 1;
     public static final int ACTION_ZOOM = 2;
+    private static final String SUFFIX_NAME = ".jpg";
 
     private int width;
     private int height;
@@ -42,7 +43,7 @@ public abstract class BaseCameraActivity extends BaseActivity {
         this.height = height;
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(savePath, picName + ".jpg")));
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(savePath, picName + SUFFIX_NAME)));
         startActivityForResult(intent, ACTION_CAMERA);
     }
 
@@ -66,7 +67,7 @@ public abstract class BaseCameraActivity extends BaseActivity {
         String picPath = "";
         switch (requestCode) {
             case ACTION_CAMERA:
-                picPath = new File(savePath, picName + ".jpg").getPath();
+                picPath = new File(savePath, picName + SUFFIX_NAME).getPath();
                 break;
             case ACTION_ALBUM:
                 if (data == null) {

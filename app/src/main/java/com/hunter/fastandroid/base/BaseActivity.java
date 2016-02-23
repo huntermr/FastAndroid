@@ -2,8 +2,8 @@ package com.hunter.fastandroid.base;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,9 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.hunter.fastandroid.app.AppManager;
 import com.hunter.fastandroid.net.AsyncHttpNetCenter;
-import com.hunter.fastandroid.net.OkHttpNetCenter;
 import com.hunter.fastandroid.ui.custom.CustomConfirmDialog;
 
 import butterknife.ButterKnife;
@@ -46,8 +44,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         // 隐藏标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         initContentView();
-        // 将该Activity加入堆栈
-        AppManager.getAppManager().addActivity(this);
         // 初始化View注入
         ButterKnife.bind(this);
         initPresenter();
@@ -55,16 +51,112 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
     }
 
     @Override
-    protected void onDestroy() {
+    public void finish() {
         // 清除网络请求队列
         AsyncHttpNetCenter.getInstance().clearRequestQueue(this);
-//        OkHttpNetCenter.getInstance().clearRequestQueue(this);
-
-        // 将该Activity从堆栈移除
-        AppManager.getAppManager().removeActivity(this);
-        super.onDestroy();
+        super.finish();
     }
 
+    /**
+     * 显示单选对话框
+     *
+     * @param title           标题
+     * @param message         提示信息
+     * @param strings         选项数组
+     * @param checkedItem     默认选中
+     * @param onClickListener 点击事件的监听
+     */
+    public void showRadioButtonDialog(String title, String message, String[] strings, int checkedItem, DialogInterface.OnClickListener onClickListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        if (!TextUtils.isEmpty(message)) {
+            builder.setMessage(message);
+        }
+        builder.setSingleChoiceItems(strings, checkedItem, onClickListener);
+        builder.create();
+        builder.show();
+    }
+
+    /**
+     * 显示单选对话框
+     *
+     * @param title           标题
+     * @param strings         选项数组
+     * @param onClickListener 点击事件的监听
+     */
+    public void showRadioButtonDialog(String title, String[] strings, DialogInterface.OnClickListener onClickListener) {
+        showRadioButtonDialog(title, null, strings, 0, onClickListener);
+    }
+
+    /**
+     * 弹出自定义对话框
+     */
+    public void showConfirmDialog(String title, View.OnClickListener positiveListener) {
+        CustomConfirmDialog confirmDialog = new CustomConfirmDialog(this, title, positiveListener);
+        confirmDialog.show();
+    }
+
+    @Override
+    public void showProgress(boolean flag, String message) {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            mProgressDialog.setCancelable(flag);
+            mProgressDialog.setCanceledOnTouchOutside(false);
+            mProgressDialog.setMessage(message);
+        }
+
+        mProgressDialog.show();
+    }
+
+    @Override
+    public void showProgress(String message) {
+        showProgress(true, message);
+    }
+
+    @Override
+    public void showProgress() {
+        showProgress(true);
+    }
+
+    @Override
+    public void showProgress(boolean flag) {
+        showProgress(flag, "");
+    }
+
+    @Override
+    public void hideProgress() {
+        if (mProgressDialog == null)
+            return;
+
+        if (mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void showToast(int resId) {
+        showToast(getString(resId));
+    }
+
+    @Override
+    public void showToast(String msg) {
+        if (!isFinishing()) {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void close() {
+        finish();
+    }
+
+    //--------------------------Fragment相关--------------------------//
     /**
      * 获取Fragment管理器
      *
@@ -162,97 +254,5 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         }
     }
 
-    /**
-     * 显示单选对话框
-     *
-     * @param title           标题
-     * @param message         提示信息
-     * @param strings         选项数组
-     * @param checkedItem     默认选中
-     * @param onClickListener 点击事件的监听
-     */
-    public void showRadioButtonDialog(String title, String message, String[] strings, int checkedItem, DialogInterface.OnClickListener onClickListener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title);
-        if (!TextUtils.isEmpty(message)) {
-            builder.setMessage(message);
-        }
-        builder.setSingleChoiceItems(strings, checkedItem, onClickListener);
-        builder.create();
-        builder.show();
-    }
-
-    /**
-     * 显示单选对话框
-     *
-     * @param title           标题
-     * @param strings         选项数组
-     * @param onClickListener 点击事件的监听
-     */
-    public void showRadioButtonDialog(String title, String[] strings, DialogInterface.OnClickListener onClickListener) {
-        showRadioButtonDialog(title, null, strings, 0, onClickListener);
-    }
-
-    /**
-     * 弹出自定义对话框
-     */
-    public void showConfirmDialog(String title, View.OnClickListener positiveListener) {
-        CustomConfirmDialog confirmDialog = new CustomConfirmDialog(this, title, positiveListener);
-        confirmDialog.show();
-    }
-
-    @Override
-    public void showProgress(boolean flag, String message) {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            mProgressDialog.setCancelable(flag);
-            mProgressDialog.setCanceledOnTouchOutside(false);
-            mProgressDialog.setMessage(message);
-        }
-
-        mProgressDialog.show();
-    }
-
-    @Override
-    public void showProgress(String message) {
-        showProgress(true, message);
-    }
-
-    @Override
-    public void showProgress() {
-        showProgress(true);
-    }
-
-    @Override
-    public void showProgress(boolean flag) {
-        showProgress(flag, "");
-    }
-
-    @Override
-    public void hideProgress() {
-        if (mProgressDialog == null)
-            return;
-
-        if (mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
-
-    @Override
-    public void showToast(int resId) {
-        showToast(getString(resId));
-    }
-
-    @Override
-    public void showToast(String msg) {
-        if (!isFinishing()) {
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    public void close() {
-        finish();
-    }
+    //--------------------------Fragment相关end--------------------------//
 }

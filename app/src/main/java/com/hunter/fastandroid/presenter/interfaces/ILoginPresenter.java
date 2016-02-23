@@ -1,5 +1,6 @@
 package com.hunter.fastandroid.presenter.interfaces;
 
+import com.hunter.fastandroid.ui.view.interfaces.ILoginView;
 import com.hunter.fastandroid.vo.request.LoginRequest;
 
 /**
@@ -8,7 +9,8 @@ import com.hunter.fastandroid.vo.request.LoginRequest;
 public interface ILoginPresenter {
     /**
      * 登录
+     * @param loginView
      * @param loginRequest
      */
-    void login(LoginRequest loginRequest);
+    void login(ILoginView loginView, LoginRequest loginRequest);
 }

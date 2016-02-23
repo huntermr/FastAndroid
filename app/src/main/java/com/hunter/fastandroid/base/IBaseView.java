@@ -1,5 +1,7 @@
 package com.hunter.fastandroid.base;
 
+import android.content.Context;
+
 /**
  * 公共View接口
  *
@@ -52,6 +54,12 @@ public interface IBaseView {
      * @param msg 提示内容
      */
     void showToast(String msg);
+
+    /**
+     * 获取当前上下文对象
+     * @return
+     */
+    Context getContext();
 
     /**
      * 结束当前页面

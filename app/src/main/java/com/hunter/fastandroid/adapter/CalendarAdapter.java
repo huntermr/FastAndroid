@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.hunter.fastandroid.R;
 import com.hunter.fastandroid.base.CustomBaseAdapter;
-import com.hunter.fastandroid.vo.Calendar;
 import com.hunter.fastandroid.utils.CommonUtils;
 
 import java.util.Date;

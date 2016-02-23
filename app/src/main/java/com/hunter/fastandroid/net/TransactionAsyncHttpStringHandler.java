@@ -1,5 +1,6 @@
 package com.hunter.fastandroid.net;
 
+import com.hunter.fastandroid.base.JsonResponse;
 import com.hunter.fastandroid.utils.Logger;
 import com.loopj.android.http.TextHttpResponseHandler;
 
@@ -18,10 +19,6 @@ public class TransactionAsyncHttpStringHandler extends TextHttpResponseHandler {
         setCharset(AsyncHttpNetCenter.CONTENT_ENCODING);
     }
 
-    void sendResponse(String responseString){
-        mTransactionListener.onSuccess(responseString);
-    }
-
     @Override
     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
         mTransactionListener.onFailure(ResponseCode.ERROR_NETWORK);
@@ -31,6 +28,7 @@ public class TransactionAsyncHttpStringHandler extends TextHttpResponseHandler {
     public void onSuccess(int statusCode, Header[] headers, String responseString) {
         Logger.e("HTTP-Response,data：" + responseString);
 
-        sendResponse(responseString);
+        JsonResponse response = JsonResponse.getResponse(responseString);
+        mTransactionListener.onSuccess(response);
     }
 }

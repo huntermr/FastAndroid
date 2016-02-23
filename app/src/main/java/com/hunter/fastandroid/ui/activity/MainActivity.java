@@ -32,14 +32,14 @@ public class MainActivity extends BaseActivity implements ILoginView {
         titleBar.setTitle("测试页面");
         tvContent.setText("登录中...");
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.userName = "";
-        loginRequest.password = "";
-        loginPresenter.login(loginRequest);
+        loginRequest.userName = "hunter";
+        loginRequest.password = "123456";
+        loginPresenter.login(this, loginRequest);
     }
 
     @Override
     public void initPresenter() {
-        loginPresenter = new LoginPresenterImpl(this);
+        loginPresenter = new LoginPresenterImpl();
     }
 
     @Override
