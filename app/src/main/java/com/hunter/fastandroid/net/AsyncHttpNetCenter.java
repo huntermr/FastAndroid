@@ -8,8 +8,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.protocol.HTTP;
+import cz.msebera.android.httpclient.HttpEntity;
+import java.nio.charset.StandardCharsets;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,7 +42,7 @@ public class AsyncHttpNetCenter {
     // 响应超时时间
     static final int RESPONSE_TIMEOUT = 15 * 1000;
     // 默认编码
-    public static final String CONTENT_ENCODING = HTTP.UTF_8;
+    public static final String CONTENT_ENCODING = StandardCharsets.UTF_8.name();
     // 默认Content-Type
     public static final String DEFAULT_CONTENT_TYPE = "application/json";
 
