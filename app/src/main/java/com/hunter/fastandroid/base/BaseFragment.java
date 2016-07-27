@@ -30,9 +30,18 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mLayoutView = getCreateView(inflater, container);
-        ButterKnife.bind(this, mLayoutView);
-        initView();
+        //20160727 修复该方法多次调用 bug
+        if (mLayoutView != null) {
+            ViewGroup parent = (ViewGroup) mLayoutView.getParent();
+            if (parent != null) {
+                parent.removeView(mLayoutView);
+            }
+        } else {
+            mLayoutView = getCreateView(inflater, container);
+            ButterKnife.bind(this, mLayoutView);
+            initView();     //初始化布局
+        }
+
         return mLayoutView;
     }
 
