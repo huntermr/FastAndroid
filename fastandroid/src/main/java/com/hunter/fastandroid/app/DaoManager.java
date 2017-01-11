@@ -5,7 +5,9 @@ import cache.greendao.DaoSession;
 import cache.greendao.UserDao;
 
 /**
- * Created by Administrator on 2017/1/10.
+ * GreenDao 操作管理器
+ *
+ * @author Hunter
  */
 public class DaoManager {
     private static DaoManager instance;
