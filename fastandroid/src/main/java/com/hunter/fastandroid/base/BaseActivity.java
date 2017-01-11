@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.trello.rxlifecycle.LifecycleProvider;
+import com.trello.rxlifecycle.LifecycleTransformer;
+import com.trello.rxlifecycle.android.ActivityEvent;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
 import butterknife.ButterKnife;
 
 /**
@@ -13,7 +18,7 @@ import butterknife.ButterKnife;
  *
  *  @author Hunter
  */
-public abstract class BaseActivity extends AppCompatActivity implements IBaseView {
+public abstract class BaseActivity extends RxAppCompatActivity implements IBaseView {
     private Toast toast;
     private ProgressDialog mProgressDialog;
 
@@ -92,4 +97,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         }
     }
 
+    @Override
+    public <T> LifecycleTransformer<T> bind() {
+        return bindToLifecycle();
+    }
 }

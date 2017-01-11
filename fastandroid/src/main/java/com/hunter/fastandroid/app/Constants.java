@@ -7,9 +7,7 @@ package com.hunter.fastandroid.app;
  */
 public class Constants {
 
-    /**
-     * 应用程序名
-     */
-    public static final String APPNAME = "FastAndroid";
+    // 数据库名称
+    public static final String DATABASE_NAME = "leshow";
 
 }

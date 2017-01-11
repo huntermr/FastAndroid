@@ -1,10 +1,14 @@
 package com.hunter.fastandroid.base;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.trello.rxlifecycle.LifecycleProvider;
+import com.trello.rxlifecycle.LifecycleTransformer;
+import com.trello.rxlifecycle.android.FragmentEvent;
+import com.trello.rxlifecycle.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 
@@ -13,7 +17,7 @@ import butterknife.ButterKnife;
  *
  * @author Hunter
  */
-public abstract class BaseFragment extends Fragment implements IBaseView {
+public abstract class BaseFragment extends RxFragment implements IBaseView {
     private View mLayoutView;
 
     /**
@@ -102,4 +106,8 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         }
     }
 
+    @Override
+    public <T> LifecycleTransformer<T> bind() {
+        return bindToLifecycle();
+    }
 }

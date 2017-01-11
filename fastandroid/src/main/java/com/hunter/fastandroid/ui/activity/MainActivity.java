@@ -8,8 +8,8 @@ import android.widget.TextView;
 import com.hunter.fastandroid.R;
 import com.hunter.fastandroid.base.BaseActivity;
 import com.hunter.fastandroid.presenter.TestPresenter;
-import com.hunter.fastandroid.ui.widget.TitleBar;
 import com.hunter.fastandroid.ui.interfaces.ITestView;
+import com.hunter.fastandroid.ui.widget.TitleBar;
 
 import butterknife.BindView;
 
@@ -48,7 +48,6 @@ public class MainActivity extends BaseActivity implements ITestView {
 
     @Override
     public void initPresenter() {
-
         testPresenter = new TestPresenter();
     }
 

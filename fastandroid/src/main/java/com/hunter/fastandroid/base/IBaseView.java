@@ -2,6 +2,8 @@ package com.hunter.fastandroid.base;
 
 import android.content.DialogInterface;
 
+import com.trello.rxlifecycle.LifecycleTransformer;
+
 /**
  * View层接口基类
  *
@@ -42,4 +44,12 @@ public interface IBaseView {
      * @param msg 提示内容
      */
     void showToast(String msg);
+
+    /**
+     * 关联RxLifecycle
+     *
+     * @param <T>
+     * @return
+     */
+    <T> LifecycleTransformer<T> bind();
 }
