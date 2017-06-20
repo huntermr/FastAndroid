@@ -5,7 +5,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.app.UserManager;
 import demo.base.BaseActivity;
 import demo.presenter.UserPresenter;

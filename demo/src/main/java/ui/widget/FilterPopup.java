@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
-import cn.tbl.android.R;
 import demo.base.CustomBaseAdapter;
 
 /**

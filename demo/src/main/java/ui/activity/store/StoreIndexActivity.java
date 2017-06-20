@@ -17,7 +17,6 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.adapter.AdsImageHolder;
 import demo.adapter.NewProductAdapter;
 import demo.adapter.SpecialOfferAdapter;

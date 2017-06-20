@@ -36,7 +36,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.adapter.AdsImageHolder;
 import demo.adapter.StoreAdapter;
 import demo.app.Constants;

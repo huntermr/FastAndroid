@@ -3,7 +3,6 @@ package demo.rx;
 
 import com.orhanobut.logger.Logger;
 
-import cn.tbl.android.R;
 import demo.base.IBaseView;
 import demo.exception.ApiException;
 import demo.vo.JsonResponse;

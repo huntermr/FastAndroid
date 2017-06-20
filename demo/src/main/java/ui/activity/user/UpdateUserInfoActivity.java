@@ -31,7 +31,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.app.Constants;
 import demo.base.BaseActivity;
 import demo.oss.OSSFileLoader;

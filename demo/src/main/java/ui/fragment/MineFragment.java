@@ -21,7 +21,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.tbl.android.R;
 import demo.app.ActivityManager;
 import demo.app.CacheDataManager;
 import demo.app.Constants;

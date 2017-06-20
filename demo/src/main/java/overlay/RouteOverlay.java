@@ -18,7 +18,6 @@ import com.amap.api.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.tbl.android.R;
 
 public class RouteOverlay {
 	protected List<Marker> stationMarkers = new ArrayList<Marker>();

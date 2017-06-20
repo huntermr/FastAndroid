@@ -6,7 +6,6 @@ import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.tbl.android.R;
 import demo.base.BaseActivity;
 import demo.presenter.UserPresenter;
 import demo.ui.interfaces.user.ISendMsgView;

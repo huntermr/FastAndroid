@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.tbl.android.R;
 import demo.utils.CommonUtils;
 
 /**

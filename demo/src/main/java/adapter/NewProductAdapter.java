@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.tbl.android.R;
 import demo.base.CustomBaseAdapter;
 import demo.utils.ImageLoadUtils;
 import demo.utils.PixelUtils;

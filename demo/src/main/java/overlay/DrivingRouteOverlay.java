@@ -19,7 +19,6 @@ import com.amap.api.services.route.TMC;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.tbl.android.R;
 import demo.utils.amap.AMapUtil;
 
 

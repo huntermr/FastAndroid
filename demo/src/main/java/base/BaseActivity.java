@@ -16,7 +16,6 @@ import com.trello.rxlifecycle.LifecycleTransformer;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
-import cn.tbl.android.R;
 import demo.app.ActivityManager;
 import demo.app.UserManager;
 import demo.ui.activity.MainActivity;

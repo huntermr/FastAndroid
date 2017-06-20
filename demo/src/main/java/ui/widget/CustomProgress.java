@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
-import cn.tbl.android.R;
 
 /**
  * Created by Administrator on 2017/5/25.

@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.adapter.NearbyStoreAdapter;
 import demo.adapter.SearchScopeAdapter;
 import demo.app.Constants;

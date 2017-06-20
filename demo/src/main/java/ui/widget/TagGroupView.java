@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.tbl.android.R;
 import demo.utils.PixelUtils;
 import demo.vo.SearchHistory;
 

@@ -9,7 +9,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.base.BaseActivity;
 import demo.base.CustomFragmentPagerAdapter;
 import demo.ui.fragment.MainFragment;

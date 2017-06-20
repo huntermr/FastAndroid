@@ -20,7 +20,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.adapter.SearchCityAdapter;
 import demo.adapter.SortCityAdapter;
 import demo.app.Constants;

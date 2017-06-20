@@ -29,7 +29,6 @@ import com.amap.api.services.route.WalkPath;
 import com.amap.api.services.route.WalkRouteResult;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.app.Constants;
 import demo.app.LocationManager;
 import demo.base.BaseActivity;
@@ -39,9 +38,6 @@ import demo.overlay.WalkRouteOverlay;
 import demo.utils.amap.AMapUtil;
 import demo.utils.amap.ToastUtil;
 
-import static cn.tbl.android.app.Constants.ROUTE_TYPE_DRIVE;
-import static cn.tbl.android.app.Constants.ROUTE_TYPE_RIDE;
-import static cn.tbl.android.app.Constants.ROUTE_TYPE_WALK;
 
 /**
  * Created by Administrator on 2017/5/18.

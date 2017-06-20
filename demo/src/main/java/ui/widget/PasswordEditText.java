@@ -19,7 +19,6 @@ import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.tbl.android.R;
 
 /**
  * Created by Administrator on 2017/5/25.

@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.tbl.android.R;
 import demo.app.ServiceManager;
 import demo.rx.JsonResponseFunc;
 import demo.utils.MyStringUtils;

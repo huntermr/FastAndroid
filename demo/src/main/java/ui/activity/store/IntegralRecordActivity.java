@@ -10,7 +10,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.adapter.IntegralRecordAdapter;
 import demo.base.BaseActivity;
 import demo.presenter.UserPresenter;

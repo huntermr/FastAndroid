@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.tbl.android.R;
 import demo.base.CustomBaseAdapter;
 import demo.vo.response.store.Store;
 

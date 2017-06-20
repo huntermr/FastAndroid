@@ -18,7 +18,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import cache.greendao.SearchHistoryDao;
-import cn.tbl.android.R;
 import demo.adapter.StoreAdapter;
 import demo.app.DaoManager;
 import demo.app.LocationManager;

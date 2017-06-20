@@ -20,7 +20,6 @@ import com.amap.api.services.core.LatLonPoint;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.tbl.android.R;
 
 /**
  * 公交线路图层类。在高德地图API里，如果要显示公交线路，可以用此类来创建公交线路图层。如不满足需求，也可以自己创建自定义的公交线路图层。

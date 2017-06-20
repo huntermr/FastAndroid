@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 
-import cn.tbl.android.R;
 
 /**
  * 图片加载工具类

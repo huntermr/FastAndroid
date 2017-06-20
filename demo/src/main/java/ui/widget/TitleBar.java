@@ -8,7 +8,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import cn.tbl.android.R;
 
 
 /**

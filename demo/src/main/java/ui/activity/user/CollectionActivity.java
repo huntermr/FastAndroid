@@ -10,7 +10,6 @@ import com.amap.api.maps.model.LatLng;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.adapter.NewProductAdapter;
 import demo.adapter.StoreAdapter;
 import demo.app.LocationManager;
@@ -26,9 +25,6 @@ import demo.vo.request.GetFavorStoreRequest;
 import demo.vo.response.store.NewProduct;
 import demo.vo.response.store.Store;
 
-import static cn.tbl.android.app.Constants.COLLECTION_PRODUCT;
-import static cn.tbl.android.app.Constants.COLLECTION_STORE;
-import static cn.tbl.android.app.Constants.COLLECTION_TYPE;
 
 /**
  * Created by Administrator on 2017/5/12.

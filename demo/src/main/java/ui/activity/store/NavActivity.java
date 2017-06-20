@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.tbl.android.R;
 import demo.app.Constants;
 import demo.base.BaseActivity;
 import demo.utils.amap.AMapUtil;

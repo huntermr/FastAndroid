@@ -11,7 +11,6 @@ import com.trello.rxlifecycle.LifecycleTransformer;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import butterknife.ButterKnife;
-import cn.tbl.android.R;
 import rx.Observable;
 import rx.Subscriber;
 

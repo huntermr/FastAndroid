@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.tbl.android.R;
 import demo.app.UserManager;
 import demo.base.BaseActivity;
 import demo.presenter.UserPresenter;

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import cn.tbl.android.R;
 
 /**
  * Created by Administrator on 2017/6/8.

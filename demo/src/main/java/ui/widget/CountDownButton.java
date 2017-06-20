@@ -5,7 +5,6 @@ import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import cn.tbl.android.R;
 
 /**
  * Created by Administrator on 2017/5/5.

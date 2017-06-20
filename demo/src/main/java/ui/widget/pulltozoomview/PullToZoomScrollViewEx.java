@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-import cn.tbl.android.R;
 
 /**
  * Author:    ZhuWenWu

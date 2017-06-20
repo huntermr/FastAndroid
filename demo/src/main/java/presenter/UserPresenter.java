@@ -4,7 +4,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
-import cn.tbl.android.R;
 import demo.base.BasePresenter;
 import demo.rx.JsonResponseSubscriber;
 import demo.rx.ResponseSubscriber;
