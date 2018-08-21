@@ -7,24 +7,24 @@ package com.hunter.fastandroid.vo;
  * @author Hunter
  */
 public class JsonResponse<T> {
-    private int code;
-    private String msg;
+    private int status;
+    private String message;
     private T data;
 
-    public int getCode() {
-        return code;
+    public int getStatus() {
+        return status;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {

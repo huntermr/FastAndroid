@@ -11,7 +11,7 @@ public class ApiException extends RuntimeException {
     private JsonResponse tJsonResponse;
 
     public ApiException(JsonResponse jsonResponse) {
-        super(jsonResponse.getMsg());
+        super(jsonResponse.getMessage());
     }
 
     public void setJsonResponse(JsonResponse jsonResponse) {

@@ -3,12 +3,8 @@ package com.hunter.fastandroid.app;
 import com.hunter.fastandroid.utils.CommonUtils;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Set;
 import java.util.TreeSet;
 
-import cache.greendao.UserDao;
-import okhttp3.Connection;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -16,7 +12,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -79,7 +75,7 @@ public class ServiceManager {
                 .baseUrl(baseUrl)
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
         return retrofit.create(t);

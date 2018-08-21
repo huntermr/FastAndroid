@@ -3,6 +3,9 @@ package com.hunter.fastandroid.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
+
 /**
  * 自定义应用入口
  *
@@ -20,6 +23,8 @@ public class BaseApplication extends Application {
         super.onCreate();
 
         mInstance = this;
+
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
 }

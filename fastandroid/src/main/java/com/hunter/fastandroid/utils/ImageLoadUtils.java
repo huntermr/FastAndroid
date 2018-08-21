@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.hunter.fastandroid.R;
 
 /**
@@ -18,10 +19,14 @@ public class ImageLoadUtils {
     public static final int DEFAULT_PLACEHOLDER_RESID = R.mipmap.ic_launcher;
 
     public static void loadImage(Context context, String imageUrl, int resId, ImageView imageView) {
+        RequestOptions options = new RequestOptions()
+                .placeholder(resId);
+
+
         Glide
                 .with(context)
                 .load(imageUrl)
-                .placeholder(resId)
+                .apply(options)
                 .into(imageView);
     }
 

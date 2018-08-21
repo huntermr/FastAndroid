@@ -5,10 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.trello.rxlifecycle.LifecycleProvider;
-import com.trello.rxlifecycle.LifecycleTransformer;
-import com.trello.rxlifecycle.android.FragmentEvent;
-import com.trello.rxlifecycle.components.support.RxFragment;
+import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.trello.rxlifecycle2.components.RxFragment;
 
 import butterknife.ButterKnife;
 

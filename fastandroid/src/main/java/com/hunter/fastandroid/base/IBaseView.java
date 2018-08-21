@@ -2,7 +2,8 @@ package com.hunter.fastandroid.base;
 
 import android.content.DialogInterface;
 
-import com.trello.rxlifecycle.LifecycleTransformer;
+import com.trello.rxlifecycle2.LifecycleTransformer;
+
 
 /**
  * View层接口基类

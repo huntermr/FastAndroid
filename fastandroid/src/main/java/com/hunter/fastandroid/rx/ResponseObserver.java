@@ -5,35 +5,35 @@ import android.content.DialogInterface;
 import com.hunter.fastandroid.base.IBaseView;
 import com.orhanobut.logger.Logger;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
- * RxJava 自定义Subscriber  (使用背压时使用)
+ * RxJava 自定义Subscriber
  *
  * @param <T>
  * @author Hunter
  */
-public abstract class ResponseSubscriber<T> implements Subscriber<T> {
+public abstract class ResponseObserver<T> implements Observer<T> {
     private static final String TAG = "ResponseObserver";
     private IBaseView mBaseView;
-    private Subscription subscription;
+    private Disposable disposable;
 
-    public ResponseSubscriber(IBaseView baseView) {
+    public ResponseObserver(IBaseView baseView) {
         mBaseView = baseView;
         mBaseView.setProgressCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                if(subscription != null){
-                    subscription.cancel();
+                if(disposable != null){
+                    disposable.dispose();
                 }
             }
         });
     }
 
     @Override
-    public void onSubscribe(Subscription subscription) {
-        this.subscription = subscription;
+    public void onSubscribe(Disposable disposable) {
+        this.disposable = disposable;
         mBaseView.showProgress("");
     }
 

@@ -3,7 +3,8 @@ package com.hunter.fastandroid.rx;
 import com.hunter.fastandroid.exception.ApiException;
 import com.hunter.fastandroid.vo.JsonResponse;
 
-import rx.functions.Func1;
+import io.reactivex.functions.Function;
+
 
 /**
  * RxJava map转换
@@ -11,12 +12,12 @@ import rx.functions.Func1;
  * @param <T>
  * @author Hunter
  */
-public class JsonResponseFunc<T> implements Func1<JsonResponse<T>, T> {
+public class JsonResponseFunc<T> implements Function<JsonResponse<T>, T> {
     @Override
-    public T call(JsonResponse<T> tJsonResponse) {
+    public T apply(JsonResponse<T> tJsonResponse) throws Exception {
         if (tJsonResponse == null) return null;
 
-        if (tJsonResponse.getCode() != 1000) {
+        if (tJsonResponse.getStatus() != 10000) {
             throw new ApiException(tJsonResponse);
         }
 

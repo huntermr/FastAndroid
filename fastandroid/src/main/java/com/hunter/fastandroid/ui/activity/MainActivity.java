@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity implements ITestView {
 
     private void send() {
         testPresenter.test(this);
+        testPresenter.test2(this);
     }
 
     @Override

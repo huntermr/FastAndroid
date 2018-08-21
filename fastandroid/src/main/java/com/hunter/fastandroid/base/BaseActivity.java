@@ -3,13 +3,11 @@ package com.hunter.fastandroid.base;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.trello.rxlifecycle.LifecycleProvider;
-import com.trello.rxlifecycle.LifecycleTransformer;
-import com.trello.rxlifecycle.android.ActivityEvent;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
+import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 
