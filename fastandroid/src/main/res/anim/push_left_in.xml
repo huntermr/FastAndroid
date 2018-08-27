@@ -1,0 +1,6 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 定义从左向右滑动时，后一页进入的动画 -->
+
+    <translate android:fromXDelta="100%p" android:toXDelta="0"
+        android:duration="@android:integer/config_shortAnimTime" />
+</set>

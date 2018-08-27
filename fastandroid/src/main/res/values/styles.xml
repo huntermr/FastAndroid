@@ -1,16 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/gray_button_background</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <!--标题栏样式-->
     <style name="TitleBar">
         <item name="android:orientation">horizontal</item>
-        <item name="android:background">@color/black</item>
+        <item name="android:background">@color/colorPrimary</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_height">30dp</item>
@@ -23,9 +26,10 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <!--星期单选框样式-->
-    <style name="WeekCheckbox">
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">14sp</item>
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
+
 </resources>

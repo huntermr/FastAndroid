@@ -30,7 +30,7 @@ public abstract class BasePresenter {
     }
 
     /**
-     * 普通订阅
+     * 普通简单订阅
      * @param view
      * @param observable
      * @param observer
@@ -45,19 +45,4 @@ public abstract class BasePresenter {
                 .subscribe(observer);
     }
 
-    /**
-     * 支持背压的订阅
-     * @param view
-     * @param flowable
-     * @param subscriber
-     * @param <T>
-     */
-    public <T> void flowableSubscribe(IBaseView view, Flowable<T> flowable, Subscriber<T> subscriber) {
-        flowable
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(view.<T>bind())
-                .subscribe(subscriber);
-    }
 }

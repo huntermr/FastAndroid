@@ -14,6 +14,7 @@
     <color name="gray_count_edittext_border">#E8E8E8</color>
     <color name="gray_count_edittext_background">#FAFAFA</color>
     <color name="black">#000000</color>
+    <color name="tran_black_70">#B2000000</color>
     <color name="green_price">#28D33C</color>
     <color name="red_hint">#FF5F5F</color>
     <color name="main_blue">#00A3FF</color>

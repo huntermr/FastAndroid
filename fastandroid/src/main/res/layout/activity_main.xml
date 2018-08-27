@@ -11,27 +11,25 @@
     <EditText
         android:id="@+id/et_input"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
         android:layout_below="@+id/title_bar"
-        android:layout_margin="20dp"
-        android:inputType="number"
-        android:maxLength="11" />
+        android:layout_toLeftOf="@+id/btn_search"
+        android:hint="请输入书名关键字进行搜索" />
 
     <Button
-        android:id="@+id/btn_submit"
+        android:id="@+id/btn_search"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@+id/et_input"
-        android:layout_centerHorizontal="true"
-        android:text="查询归属地"
-        android:textSize="14dp" />
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/title_bar"
+        android:text="搜索"
+        android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_book"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/btn_submit"
-        android:layout_margin="20dp" />
+        android:layout_below="@+id/et_input" />
 
 
 </RelativeLayout>

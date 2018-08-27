@@ -1,7 +1,6 @@
 package com.hunter.fastandroid.rx;
 
-import android.content.DialogInterface;
-
+import com.hunter.fastandroid.R;
 import com.hunter.fastandroid.base.IBaseView;
 import com.orhanobut.logger.Logger;
 
@@ -21,26 +20,20 @@ public abstract class ResponseObserver<T> implements Observer<T> {
 
     public ResponseObserver(IBaseView baseView) {
         mBaseView = baseView;
-        mBaseView.setProgressCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                if(disposable != null){
-                    disposable.dispose();
-                }
-            }
-        });
     }
 
     @Override
     public void onSubscribe(Disposable disposable) {
         this.disposable = disposable;
-        mBaseView.showProgress("");
+        mBaseView.showProgress(R.string.loading);
     }
 
     @Override
     public void onError(Throwable e) {
         mBaseView.hideProgress();
-        Logger.e(e.getMessage());
+        if(null != e){
+            Logger.e(e.getMessage());
+        }
     }
 
     @Override

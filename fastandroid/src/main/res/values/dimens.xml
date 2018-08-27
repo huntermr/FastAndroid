@@ -1,3 +1,16 @@
 <resources>
 
+    <!--文本文字-->
+    <dimen name="text_size_tiny">10sp</dimen>
+    <dimen name="text_size_micro">12sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_large_x">20sp</dimen>
+    <dimen name="text_size_large_xx">22sp</dimen>
+    <dimen name="text_size_large_xxx">24sp</dimen>
+
+
+    <dimen name="title_bar_height">50dp</dimen>
+
 </resources>

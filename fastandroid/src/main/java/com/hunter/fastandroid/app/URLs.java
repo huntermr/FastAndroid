@@ -6,8 +6,8 @@ package com.hunter.fastandroid.app;
  * @author Hunter
  */
 public class URLs {
-    public static final String BASE_URL = "http://10.10.10.38:20004/";
-    public static final String MODUEL_USER = "core/v1/user/";
+    public static final String BASE_URL = "https://api.douban.com/v2/";
+    public static final String MODUEL_BOOK = "book";
 
-    public static final String login = "login";
+    public static final String SEARCH = "/search";
 }

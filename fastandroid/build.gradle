@@ -26,6 +26,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
@@ -51,4 +52,8 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2'
     // Logger
     implementation 'com.orhanobut:logger:2.2.0'
+    // SystemBarTint
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    // AVLoadingIndicatorView
+    implementation 'com.wang.avi:library:2.1.3'
 }

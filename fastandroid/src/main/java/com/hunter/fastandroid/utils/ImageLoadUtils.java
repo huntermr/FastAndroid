@@ -22,7 +22,6 @@ public class ImageLoadUtils {
         RequestOptions options = new RequestOptions()
                 .placeholder(resId);
 
-
         Glide
                 .with(context)
                 .load(imageUrl)

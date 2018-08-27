@@ -1,5 +1,6 @@
 package com.hunter.fastandroid.base;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,6 +96,11 @@ public abstract class BaseFragment extends RxFragment implements IBaseView {
         if (getStatus()) {
             getBaseActivity().hideProgress();
         }
+    }
+
+    @Override
+    public void setProgressCancelListener(DialogInterface.OnCancelListener onCancelListener) {
+        getBaseActivity().setProgressCancelListener(onCancelListener);
     }
 
     @Override
