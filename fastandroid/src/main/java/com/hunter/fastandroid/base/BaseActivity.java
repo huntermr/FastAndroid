@@ -14,11 +14,16 @@ import android.widget.Toast;
 
 import com.hunter.fastandroid.R;
 import com.hunter.fastandroid.app.ActivityManager;
+import com.hunter.fastandroid.app.UserManager;
+import com.hunter.fastandroid.ui.activity.LoginActivity;
 import com.hunter.fastandroid.ui.activity.MainActivity;
 import com.hunter.fastandroid.ui.widget.CustomProgress;
+import com.hunter.fastandroid.utils.CommonUtils;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
@@ -85,8 +90,15 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
         ActivityManager.getInstance().pushActivity(this);
     }
 
-    public void goHome(){
+    public void goHome() {
+        CommonUtils.hideSoftInput(this);
+        finish();
         openPage(MainActivity.class);
+        ActivityManager.getInstance().finishAllActivityExceptOne(MainActivity.class);
+    }
+
+    public void backHome() {
+        finish();
         ActivityManager.getInstance().finishAllActivityExceptOne(MainActivity.class);
     }
 
@@ -175,7 +187,9 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
         mProgressDialog.setCancelable(flag);
         mProgressDialog.setMessage(message);
 
-        mProgressDialog.show();
+        if(!mProgressDialog.isShowing()){
+            mProgressDialog.show();
+        }
     }
 
     @Override
@@ -228,6 +242,11 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
         openPage(new Intent(this, clazz));
     }
 
+    public void finishAndOpenPage(Class clazz){
+        finish();
+        openPage(clazz);
+    }
+
     @Override
     public void openPage(Intent intent) {
         startActivity(intent);
@@ -247,6 +266,28 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
     }
 
     /**
+     * 开始执行一个延时任务
+     * @param delay
+     * @param unit
+     * @param observer
+     */
+    @Override
+    public void startDelayAsync(long delay, TimeUnit unit, Observer<Long> observer) {
+        startAsync(Observable.timer(delay, unit), observer);
+    }
+
+    /**
+     * 开始执行一个定时任务
+     * @param period
+     * @param unit
+     * @param observer
+     */
+    @Override
+    public void startIntervalAsync(long period, TimeUnit unit, Observer<Long> observer) {
+        startAsync(Observable.interval(period, unit), observer);
+    }
+
+    /**
      * 开始执行一个异步任务
      *
      * @param observable
@@ -261,6 +302,13 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(this.<T>bind())
                 .subscribe(observer);
+    }
+
+    @Override
+    public void clearUser() {
+        UserManager.getInstance().clearUserInfo();
+        openPage(LoginActivity.class);
+        ActivityManager.getInstance().finishAllActivityExceptOne(LoginActivity.class);
     }
 
     @Override

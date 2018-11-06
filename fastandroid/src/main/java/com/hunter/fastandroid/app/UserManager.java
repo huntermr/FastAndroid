@@ -2,6 +2,10 @@ package com.hunter.fastandroid.app;
 
 import com.hunter.fastandroid.vo.User;
 
+import java.util.List;
+
+import cache.greendao.UserDao;
+
 /**
  * Created by Administrator on 2017/1/10.
  */
@@ -23,18 +27,74 @@ public class UserManager {
         return instance;
     }
 
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
+    /**
+     * 保存用户信息,该方法一般用于登录成功后调用 (用户数据先放入内存,然后序列化到本地.如果本地已存在,则更新)
+     *
+     * @param user
+     */
     public void setCurrentUser(User user) {
         currentUser = user;
+
+        DaoManager daoManager = DaoManager.getInstance();
+        UserDao userDao = daoManager.getUserDao();
+        userDao.insertOrReplace(user);
     }
 
+    /**
+     * 清空用户信息,包括内存以及本地的数据
+     */
+    public void clearUserInfo() {
+        currentUser = null;
+
+        DaoManager daoManager = DaoManager.getInstance();
+        UserDao userDao = daoManager.getUserDao();
+        userDao.deleteAll();
+    }
+
+    /**
+     * 获取用户ID
+     * @return
+     */
+    public String getCurrentUserID() {
+        if (getCurrentUser() == null) return "";
+
+        return String.valueOf(getCurrentUser().getId());
+    }
+
+
+    /**
+     * 获取用户令牌
+     * @return
+     */
     public String getCurrentUserToken() {
         if (currentUser == null) return "";
 
-//        return currentUser.getUserToken();
-        return "";
+        return currentUser.getUserToken();
+    }
+
+    /**
+     * 当前是否已经登录
+     *
+     * @return
+     */
+    public boolean isLogin() {
+        return getCurrentUser() != null;
+    }
+
+    /**
+     * 获取当前用户信息
+     * @return
+     */
+    public User getCurrentUser() {
+        if (currentUser == null) {
+            DaoManager daoManager = DaoManager.getInstance();
+            UserDao userDao = daoManager.getUserDao();
+            List<User> users = userDao.loadAll();
+            if (users != null && users.size() > 0) {
+                currentUser = users.get(0);
+            }
+        }
+
+        return currentUser;
     }
 }

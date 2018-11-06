@@ -2,7 +2,8 @@ package com.hunter.fastandroid.rx;
 
 import com.hunter.fastandroid.R;
 import com.hunter.fastandroid.base.IBaseView;
-import com.orhanobut.logger.Logger;
+import com.hunter.fastandroid.exception.ApiException;
+import com.hunter.fastandroid.vo.JsonResponse;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -31,8 +32,21 @@ public abstract class ResponseObserver<T> implements Observer<T> {
     @Override
     public void onError(Throwable e) {
         mBaseView.hideProgress();
-        if(null != e){
-            Logger.e(e.getMessage());
+        mBaseView.showToast(e.getMessage());
+
+        if (e instanceof ApiException) {
+            ApiException apiException = (ApiException) e;
+
+            JsonResponse jsonResponse = apiException.getJsonResponse();
+
+            if(jsonResponse.isTokenValid()){
+                mBaseView.showToast(R.string.user_valid);
+                mBaseView.clearUser();
+            }else{
+                mBaseView.showToast(jsonResponse.getMessage());
+            }
+        }else{
+            mBaseView.showToast(R.string.system_error);
         }
     }
 

@@ -6,6 +6,8 @@ import android.content.Intent;
 
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 
@@ -94,10 +96,31 @@ public interface IBaseView {
     void close();
 
     /**
+     * 开始执行一个延时任务
+     * @param delay
+     * @param unit
+     * @param observer
+     */
+    void startDelayAsync(long delay, TimeUnit unit, Observer<Long> observer);
+
+    /**
+     * 开始执行一个定时任务
+     * @param period
+     * @param unit
+     * @param observer
+     */
+    void startIntervalAsync(long period, TimeUnit unit, Observer<Long> observer);
+
+    /**
      * 执行一个基于rxjava的异步任务
      * @param observable
      */
     <T> void startAsync(Observable<T> observable, Observer<T> observer);
+
+    /**
+     * 清除当前登录用户,并跳转到登录界面
+     */
+    void clearUser();
 
     /**
      * 关联RxLifecycle

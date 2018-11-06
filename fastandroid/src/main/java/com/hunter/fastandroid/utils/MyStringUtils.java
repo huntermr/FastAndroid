@@ -655,6 +655,23 @@ public class MyStringUtils {
         return mobile.isLawful();
     }
 
+    /**
+     * 验证手机号码
+     *
+     * 移动号码段:139、138、137、136、135、134、150、151、152、157、158、159、182、183、187、188、147、182
+     * 联通号码段:130、131、132、136、185、186、145
+     * 电信号码段:133、153、180、189、177
+     *
+     * @param cellphone
+     * @return
+     */
+    public static boolean checkCellphone(String cellphone) {
+        String regex = "^(13|14|15|17|18)\\d{9}$";
+        Pattern pattern=Pattern.compile(regex);
+        Matcher matcher=pattern.matcher(cellphone);
+        return matcher.matches();
+    }
+
     // 判断是否为url
     public static boolean checkEmail(String email) {
 

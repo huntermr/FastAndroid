@@ -40,7 +40,10 @@ public abstract class ResponseSubscriber<T> implements Subscriber<T> {
     @Override
     public void onError(Throwable e) {
         mBaseView.hideProgress();
-        Logger.e(e.getMessage());
+        if(null != e){
+            mBaseView.showToast(e.getMessage());
+            Logger.e(e.getMessage());
+        }
     }
 
     @Override

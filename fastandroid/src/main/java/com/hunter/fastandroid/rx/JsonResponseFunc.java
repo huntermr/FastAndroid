@@ -1,5 +1,6 @@
 package com.hunter.fastandroid.rx;
 
+
 import com.hunter.fastandroid.exception.ApiException;
 import com.hunter.fastandroid.vo.JsonResponse;
 
@@ -17,7 +18,7 @@ public class JsonResponseFunc<T> implements Function<JsonResponse<T>, T> {
     public T apply(JsonResponse<T> tJsonResponse) throws Exception {
         if (tJsonResponse == null) return null;
 
-        if (tJsonResponse.getStatus() != 10000) {
+        if (!tJsonResponse.isSuccess()) {
             throw new ApiException(tJsonResponse);
         }
 

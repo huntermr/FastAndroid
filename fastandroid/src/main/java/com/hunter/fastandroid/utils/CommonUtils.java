@@ -1,7 +1,12 @@
 package com.hunter.fastandroid.utils;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.IBinder;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -126,6 +131,31 @@ public class CommonUtils {
         } catch (Exception e) {
             e.printStackTrace();
             return "";
+        }
+    }
+
+    /**
+     * @param context
+     */
+    public static void hideSoftInput(Activity context) {
+
+        try{
+            InputMethodManager imm = (InputMethodManager) context
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            IBinder ibinder = context.getCurrentFocus().getWindowToken();
+            if((imm != null) && (ibinder != null)){
+                imm.hideSoftInputFromWindow(ibinder, 0);
+            }
+        }catch (Exception e){
+
+        }
+    }
+
+
+    public static void showSoftInput(Context context, View v) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (!imm.isActive()) {
+            imm.showSoftInput(v, 0);
         }
     }
 

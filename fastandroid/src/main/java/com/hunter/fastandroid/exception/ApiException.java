@@ -1,5 +1,6 @@
 package com.hunter.fastandroid.exception;
 
+
 import com.hunter.fastandroid.vo.JsonResponse;
 
 /**
@@ -12,13 +13,14 @@ public class ApiException extends RuntimeException {
 
     public ApiException(JsonResponse jsonResponse) {
         super(jsonResponse.getMessage());
+        tJsonResponse = jsonResponse;
     }
 
     public void setJsonResponse(JsonResponse jsonResponse) {
         tJsonResponse = jsonResponse;
     }
 
-    public JsonResponse gettJsonResponse() {
+    public JsonResponse getJsonResponse() {
         return tJsonResponse;
     }
 }
