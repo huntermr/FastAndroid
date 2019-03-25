@@ -25,3 +25,13 @@
 
 <h4>2018.8.27</h4>
 1.使用"豆瓣图书Api V2--搜索图书"接口作为演示
+
+
+# 捐助
+
+FastAndroid 是免费开源项目，不会收取任何费用。作者维护这个项目需要耗费不少精力，如果FastAndroid帮到了你，你可以捐款让这个项目变得更好。当然，无论是否捐款，都感谢您对本项目的支持。
+
+**捐款是纯粹自愿的捐助行为，我将非常感谢您的捐助，但您本人并不会因为您的捐款而获得比其他不捐款用户更多的权利，望理解。**
+
+<img src="https://raw.githubusercontent.com/huntermr/FastAndroid/master/res/wxpay.jpg" width="350" />
+<img src="https://raw.githubusercontent.com/huntermr/FastAndroid/master/res/alipay.jpg" width="350" />
